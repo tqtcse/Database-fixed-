@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>Login </title>
+</head>
+<body>
+    <div id="test1">
+    <h2 id="form">Set Appointment</h2>
+    </div>
+        <input type="text" id="full_name21" placeholder="Full name">
+        <input type="text" id="gender" placeholder="Gender">
+        <input type="text" id="age" placeholder="Age">
+        <input type="text" id="number" placeholder="Phone number">
+        <input type="text" id="address" placeholder="Address">
+    <div id="book">
+        <!-- <input type="text" id="bhyt" placeholder="Health Insurance"> -->
+        <label for="bhyt">Health Insurance:</label>
+        <select id="bhyt">
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+        </select>
+        <input type="text" id="khoa" list="khoalist" placeholder="Choose a clinic">
+        <datalist id="khoalist">
+            <option value="Ophthalmology">
+            <option value="Otorhinolaryngology">
+            <option value="Dermatology">
+            </option>
+        </datalist>
+        <input type="text" id="time" list ="timeList" placeholder="select appointment time">
+        <datalist id="timeList">
+            <option value ="7AM-8AM">
+            <option value ="8AM-9AM">
+            <option value ="9AM-10AM">
+            </option>
+        </datalist>
+    </div>
+    
+    <div id="button_cointer">
+        <button onclick="setAppointment()">Submit</button>
+    </div>
+</body>
+
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+<script src="index1.js"></script>
+
+
+<script>
+function setAppointment(){
+  
+  fullName = document.getElementById('full_name21').value
+  gender = document.getElementById('gender').value
+  age = document.getElementById('age').value
+  phoneNumber = document.getElementById('number').value
+  address = document.getElementById('address').value
+  bhyt = document.getElementById('bhyt').value
+  khoa = document.getElementById('khoa').value 
+  time = document.getElementById('time').value
+  var data = {
+      Full_Name: fullName,
+      Gender: gender,
+      Age: age,
+      Phone_number: phoneNumber,
+      Address: address,
+      Health_insurance: bhyt,
+      Time: time,
+  }
+  firebase.database().ref('Appointment/' + phoneNumber).update(data)
+  .then(()=>{
+      alert('Submit successfully')
+  }
+
+  )
+}
+function logout(){
+    firebase.auth().signOut().then(function(){
+        console.log("User signed out")
+    }).catch(function(error){
+        console.error("Error signing out", error)
+})
+}
+
+</script>
+
+</html>
