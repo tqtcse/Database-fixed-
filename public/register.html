@@ -25,37 +25,37 @@
     <script>
         
     async function register() {
-    full_name = document.getElementById('full_name').value
-    email = document.getElementById('email').value
-    password = document.getElementById('password').value
-    confirm_password = document.getElementById('confirm_password').value
-    phone_number = document.getElementById('phone_number').value
+    FullName = document.getElementById('full_name').value
+    Email = document.getElementById('email').value
+    Password = document.getElementById('password').value
+    ConfirmPassword = document.getElementById('confirm_password').value
+    PhoneNumber = document.getElementById('phone_number').value
  
-    if(password != confirm_password){
+    if(Password != ConfirmPassword){
         alert('difference password')
         return
     }
-    if (valid_name(full_name) == false){
+    if (valid_name(FullName) == false){
     alert('invalid name')
     return
     }
-    if (valid_email(email) == false || valid_password(password) == false){
+    if (valid_email(Email) == false || valid_password(Password) == false){
     alert('Email or Password is not valid')
     return
     }
-    auth.createUserWithEmailAndPassword(email, password)
+    auth.createUserWithEmailAndPassword(Email, Password)
     
         var user = auth.currentUser
         var database_ref = database.ref()
-        var userID = phone_number
+        var userID = PhoneNumber
 
-    var user_data = { full_name, phone_number, email };
+    var user_data = { FullName, PhoneNumber, Email };
 
     await database
      .ref()
      .child('Register/' + userID)
      .set(user_data);
-    alert('user created !')
+   alert('success')
    
 }
          document.addEventListener('DOMContentLoaded', function() {

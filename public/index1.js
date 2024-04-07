@@ -55,7 +55,25 @@ function valid_name(name){
 
 
 //+ firebase.auth().currentUser.uid
-
+function deletePatient(patientKey, Clinic, patinetDiv, editButton, deleteButton){
+    const confirmDelete = confirm('Are you sure to delete this patient?')
+    console.log(Clinic)
+    console.log(patientKey)
+    if(confirmDelete){
+        database.ref('patientList/' + Clinic + '/' + patientKey).remove()
+        .then(() => {
+            console.log('Bệnh nhân đã được xóa khỏi cơ sở dữ liệu.');
+            patinetDiv.remove()
+            editButton.style.display = 'none';
+            deleteButton.style.display = 'none';
+            document.getElementById('searchInput').value = '';
+            document.getElementById("CLINIC2").value = '';
+        })
+        .catch((error) => {
+            console.error('Lỗi khi xóa bệnh nhân:', error);
+        });
+    }
+}
 function editPatientInfo(patientID, name,phone){
     const newName = prompt("Nhập tên", name)
     const newSDT = prompt("Nhập sđt", phone)

@@ -25,7 +25,6 @@
             <option value="Dermatology">
             </option>
         </datalist>
-        <div> <textarea id="DETAILS" placeholder="Details About You" rows="4" cols="50"></textarea></div>
         <div>Upload your degree</div>
         <input type="file" id="degree" accept="image/*">
         <div>
@@ -119,7 +118,6 @@ function SubmitInformation(){
   avatar = document.getElementById('avatar').value
   userID = firebase.auth().currentUser.uid
   email = document.getElementById("email").value
-  details = document.getElementById("DETAILS").value
   var data = {
       Full_Name: fullName,
       Gender: gender,
@@ -128,8 +126,7 @@ function SubmitInformation(){
       Address: address,
       ID: userID,
       Specialist: specialist,
-      Email: email,
-      Detail : details
+      Email: email
   }
   firebase.database().ref('doctorList/' + specialist + '/'+ phoneNumber).update(data)
   .then(()=>{
@@ -172,7 +169,37 @@ function checkSubmit(){
             })
         })
     })
- 
+    // const isHaveToken = localStorage.getItem('customToken')
+    // console.log(isHaveToken)
+    // firebase.auth().signInWithCustomToken(isHaveToken)
+    // .then(()=>{
+    //     firebase.auth().currentUser.getIdTokenResult()
+    //     .then((idTokenResult) => {
+    //         const idToken = idTokenResult.idToken
+    //         console.log(idToken)
+    //         fetch('../api/login2', {
+    //             method: 'GET',
+    //             headers: {
+    //                 'Authorization' : `Bearer ${idToken}`
+    //             }
+    //         })
+    //         .then(respone => respone.json())
+    //         .then(data => {
+    //             const userID = data.ID
+    //             console.log(userID)
+    //         })
+    //         .catch(error => console.error(error))
+    //     })
+    // })
+    
+
+    // const user = firebase.auth().currentUser;
+    // if(user){const userID = firebase.auth().currentUser.uid
+    // 
+    // }
+    // else{
+    //     console.log('no user')
+    // }
     
 }
 function logout(){

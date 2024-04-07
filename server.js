@@ -4,8 +4,7 @@ const admin = require('firebase-admin')
 const serviceAccount = require("./serviceAccountKey.json")
 const functions = require('firebase-functions')
 const path = require('path')
-const { verify } = require('crypto')
-const { decode } = require('punycode')
+
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
@@ -53,6 +52,10 @@ app.get('/api/html', (req, res) => {
         res.render('index', {link: 'doctor/doctorFunctions.html' , linkText: 'Doctor Functions'})
         console.log('doctor')
       }
+      else if(userRole == 'nurse'){
+        res.render('index', {link: 'nurse/nurseFunctions.html' , linkText: 'Nurse Functions'})
+        console.log('nurse')
+      }
       else if(userRole == 'assist'){
         console.log('assist')
         res.render('index', {link: 'assist/assistFunctions.html', linkText: 'Assist Functions'})
@@ -66,7 +69,7 @@ app.get('/api/html', (req, res) => {
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true}))
-
+//Tạo token
 app.post('/api/login', (req, res) => {
 
   const { userEmail } = req.body;
@@ -74,14 +77,16 @@ app.post('/api/login', (req, res) => {
   const doctorQuery = db.ref('doctorAccount').orderByChild('Email').equalTo(userEmail).once('value')
   const assistQuery = db.ref('assistAccount').orderByChild('Email').equalTo(userEmail).once('value')
   const adminQuery = db.ref('adminAccount').orderByChild('Email').equalTo(userEmail).once('value')
+  const nurseQuery = db.ref('nurseAccount').orderByChild('Email').equalTo(userEmail).once('value')
+  const patientQuery = db.ref('Register').orderByChild('Email').equalTo(userEmail).once('value')
 
-  Promise.all([doctorQuery, assistQuery, adminQuery])
+  Promise.all([doctorQuery, assistQuery, adminQuery, nurseQuery, patientQuery])
   .then((snapshot) => {
     
     const doctorSnapshot = snapshot[0];
     const assistSnapshot = snapshot[1];
     const adminSnapshot = snapshot[2];
-
+    const nurseSnapshot = snapshot[3];
     if(doctorSnapshot.exists()){
         doctorSnapshot.forEach((childSnapshot) => {
          // console.log('hi')
@@ -111,7 +116,21 @@ app.post('/api/login', (req, res) => {
           res.send(customToken)
       })
       })
-    } else if (adminSnapshot){
+    } else if(nurseSnapshot){
+      nurseSnapshot.forEach((childSnapshot) => {
+       
+        const id = childSnapshot.val().PhoneNumber;
+        const nurse = childSnapshot.val().Role;
+        const customClaims = {
+          role: nurse
+        };
+        admin.auth().createCustomToken(id, customClaims )
+        .then((customToken) => {
+          res.send(customToken)
+      })
+      })
+    }
+     else if (adminSnapshot){
       adminSnapshot.forEach((childSnapshot) => {
          
         const id = childSnapshot.val().PhoneNumber;
@@ -124,6 +143,9 @@ app.post('/api/login', (req, res) => {
           res.send(customToken)
       })
       })
+    }
+    else {
+      console.log('patient')
     }
 
   }).catch((error) => {

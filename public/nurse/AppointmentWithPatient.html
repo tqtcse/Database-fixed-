@@ -399,12 +399,17 @@ async function Save() {
 }
 function deleteList(){
   PhoneNumber = document.getElementById("searchInput").value 
+  if(PhoneNumber === ''){
+    return
+  }
+  else {
   database.ref('Appointment').orderByChild('PhoneNumber').equalTo(PhoneNumber).once('value')
   .then((snapshot)=>{
     database.ref('Appointment/' + PhoneNumber).remove()
     console.log('delete success')
     AppointmentTable()
   })
+}
 }
 function AppointmentTable(){
   document.getElementById('appointmentTable').style.display = 'block'
