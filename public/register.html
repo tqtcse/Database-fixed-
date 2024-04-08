@@ -47,7 +47,7 @@
     
         var user = auth.currentUser
         var database_ref = database.ref()
-        var userID = PhoneNumber
+        var userID = user.uid
 
     var user_data = { FullName, PhoneNumber, Email };
 
@@ -55,7 +55,7 @@
      .ref()
      .child('Register/' + userID)
      .set(user_data);
-   alert('success')
+   
    
 }
          document.addEventListener('DOMContentLoaded', function() {
@@ -67,8 +67,9 @@
     
         firebase.auth().onAuthStateChanged(async function(user) {
             if (user) {
-                console.log("User is signed in.");
-                //await register()
+                alert('Success')
+                
+                await register()
                 window.location.href = "index1.html";
             } else {
                 console.log("No user is signed in.");

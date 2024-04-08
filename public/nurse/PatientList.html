@@ -51,8 +51,19 @@
     </datalist>
         <button onclick="searchPatient()">FindPatient</button>
     <div id="patientInfo"></div>
-    <div id="Bill">
-        Bill For Patient
+    <div id="Medicine">
+       Medicine
+            <input type="text" id="CLINIC2" list="CLINIC_LIST" placeholder="Choose a clinic">
+    <datalist id="CLINIC_LIST3">
+        <option value="Ophthalmology">
+        <option value="Otorhinolaryngology">
+        <option value="Dermatology">
+        </option>
+    </datalist>
+        <div id = "OphthalmologyDiv1">
+             Medicine 1
+            <input type="number" id="OphthalmologyMedicine" >
+        </div>
     </div>
 </body>
   
@@ -61,6 +72,15 @@
    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
    <script src="../index1.js"></script>
 <script>
+    //Bill
+    
+
+
+
+
+
+
+
     function searchPatient(){
     searchInput = document.getElementById('searchInput').value;
     patientListRef = database.ref('patientList');

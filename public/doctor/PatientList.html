@@ -51,10 +51,9 @@
     </datalist>
         <button onclick="searchPatient()">FindPatient</button>
     <div id="patientInfo"></div>
-    <!-- <div>Delete Patient</div>
-    <input type="text" id="DELETE" placeholder="Delete">
-    <button onclick="DeletePatient"></button> -->
-
+    <div id="Bill">
+        Bill For Patient
+    </div>
 </body>
   
    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
@@ -66,9 +65,13 @@
     searchInput = document.getElementById('searchInput').value;
     patientListRef = database.ref('patientList');
     Clinic = document.getElementById("CLINIC2").value
-    database.ref('patientList/' + Clinic).orderByChild('Phone_Number').equalTo(searchInput).once('value')
+    
+    console.log(searchInput)
+    console.log(Clinic)
+
+    database.ref('patientList/' + Clinic).orderByChild('PhoneNumber').equalTo(searchInput).once('value')
       .then((snapshot) => {
-        console.log(snapshot)
+       
         const patients = snapshot.val();
         if (patients) {
             //xóa thông tin của bệnh nhân trước đó 
@@ -80,12 +83,14 @@
                 const patient = childSnapshot.val(); 
                 const patientInfoDiv = document.getElementById('patientInfo');
                 const patientDiv = document.createElement('div');
-                patientDiv.innerHTML = `<p>Full_Name: ${patient.Full_Name}</p>
-                                        <p>Phone_Number: ${patient.Phone_Number}</p>
-                                        <p>Clinic: ${patient.Clicnic}</p>
+                patientDiv.innerHTML = `<p>FullName: ${patient.FullName}</p>
+                                        <p>PhoneNumber: ${patient.PhoneNumber}</p>
+                                        <p>Clinic: ${patient.Clinic}</p>
                                         <p>Status: ${patient.Status}</p>
                                         <p>Location: ${patient.Location}</p>
-                                        <p>Time: ${patient.Time}</p>`;
+                                        <p>Time: ${patient.Time}</p>
+                                        <p>DateMeet: ${patient.Date}</p>`;
+                                        
                 patientInfoDiv.appendChild(patientDiv);
                 
                 const editButton = document.createElement('button');
@@ -121,7 +126,6 @@
 };
 
 function addPatient(){
-    
     FullName = document.getElementById('PATIENT_NAME').value
     PhoneNumber = document.getElementById('PHONE_NUMBER').value
     Clinic = document.getElementById("CLINIC").value
@@ -131,45 +135,46 @@ function addPatient(){
     MedicalHistory = document.getElementById("HISTORY").value
     Result = document.getElementById("RESULT").value
     TimeClock = document.getElementById('TIME').value
-    
-    // var data = {
-    //                 Full_Name : FullName,
-    //                 Phone_Number : PhoneNumber,
-    //                 Clinic : Clinic,
-    //                 Status : Status,
-    //                 Date : DateMeet,
-    //                 Location : locationToMeet,
-    //                 Medical_History : MedicalHistory,
-    //                 Test_Result : Result,
-    //                 Time : TimeClock
-    // }
-    // firebase.database().ref('patientList/' + Clinic + '/' + PhoneNumber).set(data)
-    // .then(()=>{
-    //     console.log('Add Patient Successfully')
-    // }
-    // )
+    //console.log('hi')
     const patientRef = firebase.database().ref('patientList')
     patientRef.once('value', (snapshot) => {
+        if (!snapshot.exists()) {
+            var data = {
+                    FullName : FullName,
+                    PhoneNumber : PhoneNumber,
+                    Clinic : Clinic,
+                    Status : Status,
+                    Date : DateMeet,
+                    Location : locationToMeet,
+                    MedicalHistory : MedicalHistory,
+                    TestResult : Result,
+                    Time : TimeClock
+
+    }
+        console.log('No patientList found. Creating new patientList...');
+        firebase.database().ref('patientList/' + Clinic + '/' + PhoneNumber).set(data); // Tạo mới patientList nếu không tồn tại
+    }
         snapshot.forEach((clinicSnapshot) =>{
             clinicSnapshot.forEach((childSnapshot) => {
-                //console.log('hiASIII')
                 if(locationToMeet === childSnapshot.val().Location && DateMeet === childSnapshot.val().Date && TimeClock === childSnapshot.val().Time ){
                     console.log('Room isnt ready')
                     return
                 }
                 else{
                     var data = {
-                    Full_Name : FullName,
-                    Phone_Number : PhoneNumber,
+                    FullName : FullName,
+                    PhoneNumber : PhoneNumber,
                     Clinic : Clinic,
                     Status : Status,
                     Date : DateMeet,
                     Location : locationToMeet,
-                    Medical_History : MedicalHistory,
-                    Test_Result : Result,
+                    MedicalHistory : MedicalHistory,
+                    TestResult : Result,
                     Time : TimeClock
 
     }
+    console.log(Clinic)
+    console.log(PhoneNumber)
     firebase.database().ref('patientList/' + Clinic + '/' + PhoneNumber).set(data)
     .then(()=>{
         console.log('Add Patient Successfully')
