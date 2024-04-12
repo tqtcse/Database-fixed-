@@ -53,7 +53,7 @@
     <div id="patientInfo"></div>
     <div id="Medicine">
        Medicine
-            <input type="text" id="CLINIC2" list="CLINIC_LIST" placeholder="Choose a clinic">
+            <input type="text" id="CLINIC3" list="CLINIC_LIST" placeholder="Choose a clinic">
     <datalist id="CLINIC_LIST3">
         <option value="Ophthalmology">
         <option value="Otorhinolaryngology">
@@ -65,6 +65,17 @@
             <input type="number" id="OphthalmologyMedicine" >
         </div>
     </div>
+    <div id="Bill">
+        <div>Bill For Patient</div>
+        <input type="text" id="IdBill" placeholder="Id Bill">
+        <input type="text" id="Price" placeholder="Price">
+        <input type="text" id="PhoneBill" placeholder="Phone Number">
+        <input type="date" id="Date" placeholder="Date">
+        <div> <textarea id="detailBill" placeholder="Detail Bill" rows="4" cols="50"></textarea></div>
+        
+        <button onclick="BillSubmit()">Submit</button>
+    </div>
+    
 </body>
   
    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
@@ -73,6 +84,29 @@
    <script src="../index1.js"></script>
 <script>
     //Bill
+    function BillSubmit(){
+        idBill = document.getElementById("IdBill").value
+        Price = document.getElementById("Price").value
+        Clinic = document.getElementById("CLINIC3").value
+        detailBill = document.getElementById("detailBill").value
+        PhoneNumber = document.getElementById("PhoneBill").value
+        Dates = document.getElementById("Date").value
+                var data = {
+                    IdBill : idBill,
+                    Price : Price,
+                    DetailBill : detailBill,
+                    Clinic : Clinic,
+                    PhoneNumber : PhoneNumber,
+                    Date: Dates,
+                    Status : "No"
+                }
+                
+                firebase.database().ref('Bill/' + Clinic + '/' + PhoneNumber + '/' + idBill ).set(data)
+                console.log('submitBill')
+            
+            
+        }
+    
     
 
 
