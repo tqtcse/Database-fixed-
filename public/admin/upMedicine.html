@@ -17,13 +17,47 @@
             <div>Medicine Name
                <div> <input type="text" id="medicineName" placeholder="Name"></div>
             </div>
+            <div> ID Medicine
+                <div><input type="text" id="medicineID" placeholder="Medical ID"></div>
             <div>Quantity
                 <div><input type="number" id="quantity" placeholder="Quantity"></div>
+            </div>
+            <div>Place To Store
+                <div><input type="text" id="place" list="PlaceList" placeholder="Place To Store"></div>
+                <datalist id="PlaceList">
+                    <option value="B1">
+                    <option value="B2">
+                    <option value="B3">
+                    </option>
+                </datalist>
+            </div>
+            <div> Price
+                <div><input type="text" id="Price" placeholder="Price"?></div>
+            </div>
+            <div>
+                Manufacturing Date
+                <div> <input type="date" id="MFD"></div>
             </div>
             <div>Expire Date
                 <div><input type="date" id="expire" placeholder="Expire"></div>
             </div>
             <button onclick="submitMedicine()">Update</button>
+           <div id="ButtonCanUse"> Medicine List
+            <input type="text" id="FindMedicine" placeholder="Find Medicine By ID">
+            <button onclick="findMedicine()">Medicine List</button>
+           </div>
+           <div id="MedicineDiv">
+
+           </div>
+
+            <div id="Button">ExpireList
+                <button onclick="findExpiredMedicine()">Expired List</button>
+            </div>
+
+            <div id="ExpireDiv"> 
+               
+            </div>
+            
         </div>
 
         <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
@@ -35,11 +69,242 @@
                 MedicineInforDiv = document.getElementById("medicineInfor")
                 MedicineInforDiv.style.display = 'block'
             })
+            function findMedicine(){
+                Id = document.getElementById("FindMedicine").value
+                Clinic = document.getElementById("specialist").value
+
+                database.ref('Medicine/' + Clinic).once('value',function(snapshot){
+                    snapshot.forEach((childSnapshot) => {
+                        
+                        childSnapshot.forEach((childSnapshot2) => {
+
+                            childSnapshot2.forEach((childSnapshot3) => {
+                               
+                            
+                                EXDate = childSnapshot3.val().ExpireDate
+
+                                const EX = new Date(EXDate);
+                                const currentDate = new Date()
+                                
+                                IdFromData = childSnapshot3.val().IdMedicine
+                             
+                                if ((currentDate < EX) && (Id === IdFromData)) {
+                                    console.log(childSnapshot3.val().IdMedicine)
+                                    console.log(childSnapshot2.val())
+                                    //console.log(childSnapshot2.val())
+                                    //if(child)
+                                    ButtonDiv1 = document.getElementById('ButtonCanUse')
+                    ButtonDiv1.style.display = 'none'
+
+                    const MedInfoDiv1 = document.getElementById('MedicineDiv');
+                    MedInfoDiv1.innerHTML = ''; // Xóa bỏ nội dung cũ trước khi thêm mới
+
+                    MedInfoDiv1.style.display = 'block';
+
+                    const MedDiv1 = document.createElement('div');
+
+                    MedDiv1.innerHTML = `
+                            <p>Clinic: ${childSnapshot3.val().Clinic}</p>
+                            <p>Medicine Name: ${childSnapshot3.val().MedicineName}</p>
+                            <p>ID Medicine: ${childSnapshot3.val().IdMedicine}</p>
+                            <p>ManufacturingDate: ${childSnapshot3.val().ManufacturingDate}</p>
+                            <p>Expire Date: ${childSnapshot3.val().ExpireDate}</p>
+                            <p>Place: ${childSnapshot3.val().Place}</p>
+                            <p>Quantity: ${childSnapshot3.val().Quantity}</p>
+                            <p>Price: ${childSnapshot3.val().Price}</p>
+                `;
+
+                    const hideButton1 = document.createElement('button');
+                    hideButton1.textContent = "Hide";                   
+                    hideButton1.addEventListener('click', () => {
+                    ButtonDiv1.style.display = 'block';
+                    MedInfoDiv1.style.display = 'none';
+                });
+                    
+
+
+
+                    const deleteButton1 = document.createElement('button');
+                    deleteButton1.textContent = "Delete";
+                    deleteButton1.addEventListener('click', () => {
+                    
+                        childSnapshot3.ref.remove()
+                        ButtonDiv1.style.display = 'block';
+                        MedInfoDiv1.style.display = 'none';
+                        findMedicine();
+
+                });
+
+                
+
+
+                MedInfoDiv1.appendChild(MedDiv1);
+                MedInfoDiv1.appendChild(deleteButton1);
+                MedInfoDiv1.appendChild(hideButton1);
+
+                    } 
+                    
+                            })
+                        })
+                    })
+                })
+            }
+            function findExpiredMedicine(){
+
+                Clinic = document.getElementById("specialist").value
+                database.ref('Medicine/' + Clinic).once('value',function(snapshot){
+                    snapshot.forEach((childSnapshot) => {
+                        
+                        childSnapshot.forEach((childSnapshot2) => {
+
+                            childSnapshot2.forEach((childSnapshot3) => {
+                               
+                            
+                                EXDate = childSnapshot3.val().ExpireDate
+
+                                const EX = new Date(EXDate);
+                                const currentDate = new Date()
+    
+                               
+                                if (currentDate > EX) {
+                                    //console.log(childSnapshot2.val())
+                                    ButtonDiv = document.getElementById('Button')
+                    ButtonDiv.style.display = 'none'
+
+                    const MedInfoDiv = document.getElementById('ExpireDiv');
+                    MedInfoDiv.innerHTML = ''; // Xóa bỏ nội dung cũ trước khi thêm mới
+
+                    MedInfoDiv.style.display = 'block';
+
+                    const MedDiv = document.createElement('div');
+
+                    MedDiv.innerHTML = `
+                            <p>Clinic: ${childSnapshot3.val().Clinic}</p>
+                            <p>Medicine Name: ${childSnapshot3.val().MedicineName}</p>
+                            <p>ID Medicine: ${childSnapshot3.val().IdMedicine}</p>
+                            <p>ManufacturingDate: ${childSnapshot3.val().ManufacturingDate}</p>
+                            <p>Expire Date: ${childSnapshot3.val().ExpireDate}</p>
+                            <p>Place: ${childSnapshot3.val().Place}</p>
+                            <p>Quantity: ${childSnapshot3.val().Quantity}</p>
+                            <p>Price: ${childSnapshot3.val().Price}</p>
+                `;
+
+                    const hideButton = document.createElement('button');
+                    hideButton.textContent = "Hide";                   
+                    hideButton.addEventListener('click', () => {
+                    ButtonDiv.style.display = 'block';
+                    MedInfoDiv.style.display = 'none';
+                });
+                    
+
+
+
+                    const deleteButton = document.createElement('button');
+                    deleteButton.textContent = "Delete";
+                    deleteButton.addEventListener('click', () => {
+                    
+                        childSnapshot3.ref.remove()
+                        ButtonDiv.style.display = 'block';
+                        MedInfoDiv.style.display = 'none';
+                        findExpiredMedicine();
+
+                });
+
+                
+
+
+                MedInfoDiv.appendChild(MedDiv);
+                MedInfoDiv.appendChild(deleteButton);
+                MedInfoDiv.appendChild(hideButton);
+
+                    }  
+                            })
+                        })
+                    })
+                })
+            }
+            function deleteExpiredBill(){
+
+            }
             function submitMedicine(){
+            
+              Clinic = document.getElementById("specialist").value
               Name = document.getElementById("medicineName").value 
-              Quantity = document.getElementById("number").value
-              Expire = document.getElementById("date").value
-              console.log(Name)
+              Id = document.getElementById("medicineID").value
+              Quantity = document.getElementById("quantity").value
+              MFDs = document.getElementById("MFD").value
+              Expire = document.getElementById("expire").value
+              Place = document.getElementById("place").value
+              Price = document.getElementById("Price").value
+
+            const MedicineRef = firebase.database().ref('Medicine')
+            MedicineRef.once('value', (snapshot) => {
+                if(!snapshot.exists()){
+                    var data = {
+                        MedicineName : Name,
+                        IdMedicine : Id,
+                        Quantity : Quantity,
+                        ManufacturingDate : MFDs,
+                        ExpireDate : Expire,
+                        Place : Place,
+                        Clinic : Clinic,
+                        Price : Price
+
+                    }
+                    console.log('create new Medicine')
+                    firebase.database().ref('Medicine/' + Clinic + '/' + Place + '/' + Id + '/' + Expire ).set(data)
+                } else {
+                   database.ref('Medicine/' + Clinic + '/' + Place + '/' +  Id + '/' + Expire ).once('value',function(snapshot){
+                    if(!snapshot.exists()){
+                        data1 = 0;
+                        const data1Number = parseInt(data1)
+                        const quantityNumber = parseInt(Quantity)
+
+                        sum = data1Number + quantityNumber
+
+                        var data = {
+                        MedicineName : Name,
+                        IdMedicine : Id,
+                        Quantity : sum,
+                        ManufacturingDate : MFDs,
+                        ExpireDate : Expire,
+                        Place : Place,
+                        Clinic : Clinic,
+                        Price : Price
+
+                    }
+                    console.log('Add success')
+                    firebase.database().ref('Medicine/' + Clinic + '/' + Place + '/' +  Id + '/' + Expire ).set(data)
+                    } else {
+
+                        data1 = snapshot.val().Quantity
+                        console.log(data1)
+
+
+                        const data1Number = parseInt(data1)
+                        const quantityNumber = parseInt(Quantity)
+
+                        sum = data1Number + quantityNumber
+
+                        var data = {
+                        MedicineName : Name,
+                        IdMedicine : Id,
+                        Quantity : sum,
+                        ManufacturingDate : MFDs,
+                        ExpireDate : Expire,
+                        Place : Place,
+                        Clinic : Clinic,
+                        Price : Price
+
+                    }
+                    console.log('Add success')
+                    firebase.database().ref('Medicine/' + Clinic + '/' + Place + '/' +  Id + '/' + Expire ).set(data)
+                    }
+                   })
+
+                }
+            })
+
             }
                 
                 firebase.auth().onAuthStateChanged(async function(user) {
@@ -51,7 +316,7 @@
                     }
                 }
                 )
-    
+                
         </script>
  
     </body>
