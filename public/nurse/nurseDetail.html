@@ -56,9 +56,10 @@
         const selectedFile = event.target.files[0]
         const fullName = document.getElementById('full_name').value
         const specialist = document.getElementById('specialist').value
+        const phoneNumber = document.getElementById('number').value
         if(fullName && specialist && selectedFile){
             if(selectedFile){
-            const imageRef = firebase.storage().ref().child('Degree/' + specialist + '/' + fullName)
+            const imageRef = firebase.storage().ref().child('Degree/' + specialist + '/' + 'Nurse/' + phoneNumber)
             const uploadTask = imageRef.put(selectedFile)
 
             uploadTask.then((snapshot) => {
@@ -81,9 +82,10 @@
         const selectedFile = event.target.files[0]
         const fullName = document.getElementById('full_name').value
         const specialist = document.getElementById('specialist').value
+        const phoneNumber = document.getElementById('number').value
         if(fullName && specialist && selectedFile){
             if(selectedFile){
-            const imageRef = firebase.storage().ref().child('Avatar/' + specialist + '/' + fullName)
+            const imageRef = firebase.storage().ref().child('Avatar/' + specialist + '/' + 'Nurse/'+ phoneNumber)
             const uploadTask = imageRef.put(selectedFile)
 
             uploadTask.then((snapshot) => {
@@ -128,7 +130,7 @@ function SubmitInformation(){
       Specialist: specialist,
       Email: email
   }
-  firebase.database().ref('doctorList/' + specialist + '/'+ phoneNumber).update(data)
+  firebase.database().ref('nurseList/' + specialist + '/'+ phoneNumber).update(data)
   .then(()=>{
       console.log('Submit successfully')
       
@@ -140,8 +142,8 @@ function SubmitInformation(){
 function checkSubmit(){
     userID = localStorage.getItem('userID')
     console.log(userID)
-    const doctorRef = firebase.database().ref('doctorList')
-    doctorRef.once('value', (snapshot) => {
+    const nurseRef = firebase.database().ref('nurseList')
+    nurseRef.once('value', (snapshot) => {
         
         snapshot.forEach((clinicSnapshot) => {
             clinicSnapshot.forEach((childSnapshot) => {
@@ -169,37 +171,7 @@ function checkSubmit(){
             })
         })
     })
-    // const isHaveToken = localStorage.getItem('customToken')
-    // console.log(isHaveToken)
-    // firebase.auth().signInWithCustomToken(isHaveToken)
-    // .then(()=>{
-    //     firebase.auth().currentUser.getIdTokenResult()
-    //     .then((idTokenResult) => {
-    //         const idToken = idTokenResult.idToken
-    //         console.log(idToken)
-    //         fetch('../api/login2', {
-    //             method: 'GET',
-    //             headers: {
-    //                 'Authorization' : `Bearer ${idToken}`
-    //             }
-    //         })
-    //         .then(respone => respone.json())
-    //         .then(data => {
-    //             const userID = data.ID
-    //             console.log(userID)
-    //         })
-    //         .catch(error => console.error(error))
-    //     })
-    // })
-    
 
-    // const user = firebase.auth().currentUser;
-    // if(user){const userID = firebase.auth().currentUser.uid
-    // 
-    // }
-    // else{
-    //     console.log('no user')
-    // }
     
 }
 function logout(){

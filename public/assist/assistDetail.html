@@ -18,13 +18,6 @@
         <input type="text" id="number" placeholder="Phone Number">
         <input type="text" id="email" placeholder="Email">
         <input type="text" id="address" placeholder="Address">
-        <input type="text" id="specialist" list="CLINIC_LIST" placeholder="Choose a clinic">
-        <datalist id="CLINIC_LIST">
-            <option value="Ophthalmology">
-            <option value="Otorhinolaryngology">
-            <option value="Dermatology">
-            </option>
-        </datalist>
         <div>Upload your degree</div>
         <input type="file" id="degree" accept="image/*">
         <div>
@@ -55,11 +48,10 @@
     document.getElementById('degree').addEventListener('change', function(event){
         const selectedFile = event.target.files[0]
         const fullName = document.getElementById('full_name').value
-        const specialist = document.getElementById('specialist').value
         const phoneNumber = document.getElementById('number').value
-        if(fullName && specialist && selectedFile){
+        if(fullName && selectedFile){
             if(selectedFile){
-            const imageRef = firebase.storage().ref().child('Degree/' + specialist + '/' + 'Doctor/' + phoneNumber)
+            const imageRef = firebase.storage().ref().child('Degree/' + '/' + 'Assist/' + phoneNumber)
             const uploadTask = imageRef.put(selectedFile)
 
             uploadTask.then((snapshot) => {
@@ -81,11 +73,11 @@
     document.getElementById('avatar').addEventListener('change', function(event){
         const selectedFile = event.target.files[0]
         const fullName = document.getElementById('full_name').value
-        const specialist = document.getElementById('specialist').value
+    
         const phoneNumber = document.getElementById('number').value
-        if(fullName && specialist && selectedFile){
+        if(fullName  && selectedFile){
             if(selectedFile){
-            const imageRef = firebase.storage().ref().child('Avatar/' + specialist + '/' + 'Doctor/'+ phoneNumber)
+            const imageRef = firebase.storage().ref().child('Avatar/' + '/' + 'Assist/'+ phoneNumber)
             const uploadTask = imageRef.put(selectedFile)
 
             uploadTask.then((snapshot) => {
@@ -115,7 +107,7 @@ function SubmitInformation(){
   age = document.getElementById('age').value
   phoneNumber = document.getElementById('number').value
   address = document.getElementById('address').value
-  specialist = document.getElementById('specialist').value 
+ 
   degree = document.getElementById('degree').value
   avatar = document.getElementById('avatar').value
   userID = firebase.auth().currentUser.uid
@@ -127,10 +119,9 @@ function SubmitInformation(){
       Phone_Number: phoneNumber,
       Address: address,
       ID: userID,
-      Specialist: specialist,
       Email: email
   }
-  firebase.database().ref('doctorList/' + specialist + '/'+ phoneNumber).update(data)
+  firebase.database().ref('assistList/' + '/'+ phoneNumber).update(data)
   .then(()=>{
       console.log('Submit successfully')
       
@@ -142,8 +133,8 @@ function SubmitInformation(){
 function checkSubmit(){
     userID = localStorage.getItem('userID')
     console.log(userID)
-    const doctorRef = firebase.database().ref('doctorList')
-    doctorRef.once('value', (snapshot) => {
+    const assistRef = firebase.database().ref('assistList')
+    assistRef.once('value', (snapshot) => {
         
         snapshot.forEach((clinicSnapshot) => {
             clinicSnapshot.forEach((childSnapshot) => {
@@ -151,15 +142,13 @@ function checkSubmit(){
                 if(childSnapshot.val().Phone_Number === userID){
                     const userData = childSnapshot.val(); // Dữ liệu của người dùng từ cơ sở dữ liệu
 
-
+// Hiển thị thông tin của người dùng trên thanh nhập
             document.getElementById('full_name').value = userData.Full_Name
             document.getElementById('gender').value = userData.Gender
             document.getElementById('age').value = userData.Age
             document.getElementById('number').value = userData.Phone_Number
             document.getElementById('address').value = userData.Address
-            document.getElementById('specialist').value = userData.Specialist
             document.getElementById("email").value = userData.Email
-            
             downloadURL = localStorage.getItem('URLimgage')
                 const imageDisplay = document.getElementById('imageDisplay')
                 imageDisplay.src = downloadURL;

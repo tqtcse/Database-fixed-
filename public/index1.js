@@ -1,7 +1,6 @@
 
 //Register function
 
-
 var firebaseConfig = {
     apiKey: "AIzaSyDioYAzvJooHpspr8Z58bImI0s2jaIRU90",
     authDomain: "testlogin-c11b6.firebaseapp.com",
@@ -12,12 +11,15 @@ var firebaseConfig = {
     measurementId: "G-4N0GNYZQ8J"
 };
 
-firebase.initializeApp(firebaseConfig);
+//firebase.initializeApp(firebaseConfig);
+
+ firebase.initializeApp(firebaseConfig);
+
 
 const auth = firebase.auth()
 const database = firebase.database()
-//const storage = firebase.storage()
-//Phân quyền
+
+
 
 
 
