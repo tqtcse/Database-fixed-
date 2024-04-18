@@ -1,0 +1,212 @@
+body {
+    font-family: "Noto Sans JP", Helvetica, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-attachment: scroll;
+    /* background-image: url(https://img.freepik.com/free-vector/abstract-geometric-hexagonal-medical_1017-15002.jpg?w=996&t=st=1712487656~exp=1712488256~hmac=5e8d7f78006a225d5492e9ddc98e35fd8a25e3ef5c523794c8bb6bbf7c85f8ea);
+    background-repeat: no-repeat;
+    background-size: cover; */
+    /* background-image: url(doctorBackground.jpeg); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+  }
+  
+  #test1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ADEFD1FF;
+    /* background-color: rgb(4,7,68); */
+    background-color: #00203FFF;
+    background-image: url(https://www.booknmeet.com/img/hero_bg_1.svg);
+    background-size: cover;
+    
+  }
+  h2#form {
+    margin-top: 0;
+    padding: 10px 0;
+  }
+  
+  #infor1 {
+    /* display:flex;
+    box-sizing: border-box;
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap; */
+    display: flex;
+    /* justify-content: center; */
+    /* align-items: center; */
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 58%;
+    height: auto;
+    margin: 0 auto;
+    backdrop-filter: blur(2px);
+    margin-left: 5%;
+    
+  }
+
+  #ava {
+    display: block;
+    flex-basis: 50%;
+    max-width: 50%;
+    position: relative;
+    margin-right: 20px;
+    box-sizing:border-box;
+    border:solid #5B6DCD 1px;
+    border-style: dotted;
+
+  }
+  #detail {
+    display: block;
+    width: 100%;
+    flex-basis: 48%;
+    max-width: 48%;
+    position: relative;  
+    background-image: url(https://www.booknmeet.com/img/hero_bg_1.svg);
+  }
+
+
+  .header2{
+    margin-top: 0;
+    margin-bottom: 10px;
+    text-align: center;
+    padding: 10px 0;
+    background-color: #ADEFD1FF;
+    background-image: url(https://www.booknmeet.com/img/hero_bg_1.svg);
+    color: #00203FFF;
+    font-weight: bold;
+    border-bottom: 1px solid #ccc;
+  }
+  /* .header2.below{
+    margin-top: 10px;
+  } */
+  #avatop {
+    height: 50%;
+    background-image: url(https://www.booknmeet.com/img/hero_bg_1.svg);
+  }
+  #avabelow {
+    height: 50%;
+    background-image: url(https://www.booknmeet.com/img/hero_bg_1.svg);
+  }
+  input[type="text"] {
+    display: block;
+    width: 100%;
+    /* height: auto; */
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid rgb(0, 184, 255);      
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+ 
+  input[type="file"] {
+    margin-top: 10px;
+  }
+  
+  #button_cointer {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+ 
+  #ava img {
+    width: auto;
+    height: 100%;
+    margin-bottom: 10px;
+    
+  }
+  label{
+    font-size: 14px;
+    font-style :normal;
+    color: #2432ab;
+  }
+
+
+  .form-field i{
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%);
+    color: #999;
+    transition: 0.25s ease;
+  }
+  
+
+  .form-input {
+    width: 100%;
+    padding: 0 20px;
+    /* height: 50px; */
+    border: 1px solid rgb(0, 184, 255);      
+    border-radius: 4px;
+    transition: 0.25s ease;
+    /* outline: none; */
+    outline-color: #2432ab;
+  }
+  
+  .form-input:focus {
+    border-color: #2432ab;
+  }
+  .form-field {
+   position: relative;
+  }
+  .form-label {
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    transform: translateY(-50%);
+    user-select: none;
+    pointer-events: none;
+    color: #999;
+    transition: 0.25s ease;
+  }
+  .form-input:not(:placeholder-shown) + .form-label,
+  .form-input:focus + .form-label{
+    color : #2432ab;  
+    top : 0px;
+    left: 6px;
+    padding: 0 10px;
+    display: inline-block;
+    background-color: white;
+  }
+
+
+
+  button {
+    padding: 1.3em 3em;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #000;
+    background-color: #e5f2ef;
+    border: none;
+    border-radius: 40px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  button:hover {
+    background-color: #23c483;
+    box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+    color: #e5f2ef;
+    transform: translateY(-7px);
+  }
+  
+  button:active {
+    transform: translateY(-1px);
+  }
+.form-field i{
+  position: absolute;
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%);
+    color: #999;
+    transition: 0.25s ease;
+}
+

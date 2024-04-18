@@ -4,6 +4,8 @@
 </head>
 
 <body>
+    
+    <div><span id="weekNumberDisplay"></span></div>
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
@@ -24,6 +26,27 @@ Find Patient Bill
 <div id="Edit"></div>
 </body>
 <script>
+var currentDate = new Date();
+var weekNumber = getWeekNumber(currentDate);
+document.getElementById('weekNumberDisplay').innerText = "Tuần của thời gian hiện tại là tuần " + weekNumber;
+function getWeekNumber(date) {
+
+    var startOfYear = new Date(date.getFullYear(), 0, 1);
+    var dayOfWeek = startOfYear.getDay();
+    
+
+    var firstWeekStartDate = startOfYear;
+    if (dayOfWeek > 0) {
+        firstWeekStartDate.setDate(1 + (7 - dayOfWeek));
+    }
+
+    var differenceInDays = Math.floor((date - firstWeekStartDate) / (24 * 60 * 60 * 1000));
+
+    var weekNumber = Math.ceil((differenceInDays + 1) / 7) + 1;
+
+    return weekNumber;
+}
+
 function findBill(){
     const EditDiv = document.getElementById('Edit')
     const BillInfoDiv = document.getElementById('BillInformation')
@@ -54,7 +77,7 @@ function findBill(){
         const editButton = document.createElement('button')
         editButton.textContent = 'Edit'
         editButton.addEventListener('click', () => {
-            editBill(PhoneNumber, Clinic, BillID, snapshot.val().Status  )
+            editBill(PhoneNumber, Clinic, BillID, snapshot.val().Status, snapshot.val().Price  )
         })
         BillInfoDiv.appendChild(editButton)
 
@@ -68,7 +91,7 @@ function findBill(){
         
     })
 }
-function editBill(PhoneNumber, Clinic, BillID, StatusValue){
+function editBill(PhoneNumber, Clinic, BillID, StatusValue, Price){
     
     const statusInput = document.createElement('input');
     statusInput.type = 'text';
@@ -79,10 +102,36 @@ function editBill(PhoneNumber, Clinic, BillID, StatusValue){
     saveButton.addEventListener('click', () => {
 
         const newStatus = statusInput.value;
-        
+        console.log('hi')
         database.ref('Bill/' + Clinic + '/' + PhoneNumber + '/' + BillID).update({
             Status: newStatus
         })
+       
+        database.ref('Revenue/' + Clinic + '/' + weekNumber + '/' + 'Profit').once('value', function(snapshot){
+            console.log(snapshot.val())
+            if(!snapshot.exists()){
+                var data = {
+                Profit : Price,
+        }
+        database.ref('Revenue/' + Clinic + '/' + weekNumber + '/' + 'Profit').set(data)
+            }
+            else {
+                database.ref('Revenue/' + Clinic + '/' + weekNumber + '/' + 'Profit').once('value', function(snapshot){
+                    ProfitData = parseInt(snapshot.val().Profit)
+                    ProfitBill = parseInt(Price)
+
+                    console.log(ProfitData)
+                    console.log(ProfitBill)
+                    Total = ProfitData + ProfitBill
+                    var data = {
+                        Profit : Total,
+                    }
+                    database.ref('Revenue/' + Clinic + '/' + weekNumber + '/' + 'Profit').set(data)
+                })
+            }
+        })
+
+
         findBill()
 
     });

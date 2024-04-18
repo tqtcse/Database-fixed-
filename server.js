@@ -4,10 +4,13 @@ const admin = require('firebase-admin')
 const serviceAccount = require("./serviceAccountKey.json")
 const functions = require('firebase-functions')
 const path = require('path')
+const { getStorage, getDownloadURL } = require('firebase-admin/storage');
+
 
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
+  storageBucket: 'testlogin-c11b6.appspot.com',
   databaseURL : "https://testlogin-c11b6-default-rtdb.firebaseio.com/"
 })
 // hàm giải mã token
@@ -27,6 +30,26 @@ async function decodeToken(token){
 const app = express()
 const db = admin.database();
 const PORT = 80
+
+// const fileRef = getStorage().bucket('my-bucket').file('my-file');
+// const downloadURL= getDownloadURL(fileRef);
+
+const bucket = getStorage().bucket();
+const storage = getStorage();
+// const paths = "Avatar/Assist/0654234";
+// const storageRef = storage.bucket().file(paths);
+
+// storageRef.getSignedUrl({
+//   action: 'read',
+//   expires: '03-17-2025' // Thời hạn của URL được tạo ra, bạn có thể điều chỉnh theo nhu cầu của mình
+// })
+// .then((url) => {
+//   console.log(url);
+// })
+// .catch((error) => {
+//   console.error(error);
+// });
+
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
@@ -67,8 +90,46 @@ app.get('/api/html', (req, res) => {
  
 });
 
+
+
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true}))
+//Lấy ảnh
+app.post('/api/image', (req,res) => {
+  const { pathAsString } = req.body;
+  console.log(pathAsString)
+const storageRef = storage.bucket().file(pathAsString);
+
+ storageRef.getSignedUrl({
+   action: 'read',
+   expires: '03-17-2025' // Thời hạn của URL được tạo ra, bạn có thể điều chỉnh theo nhu cầu của mình
+ })
+ .then((url) => {
+   console.log(url);
+   res.send(url)
+ })
+ .catch((error) => {
+   console.error(error);
+ });
+})
+//Lấy bằng
+app.post('/api/imageDegree', (req,res) => {
+  const { pathDegreeAsString } = req.body;
+  console.log(pathDegreeAsString)
+const storageRef = storage.bucket().file(pathDegreeAsString);
+
+ storageRef.getSignedUrl({
+   action: 'read',
+   expires: '03-17-2025' // Thời hạn của URL được tạo ra, bạn có thể điều chỉnh theo nhu cầu của mình
+ })
+ .then((url2) => {
+   console.log(url2);
+   res.send(url2)
+ })
+ .catch((error) => {
+   console.error(error);
+ });
+})
 //Tạo token
 app.post('/api/login', (req, res) => {
 

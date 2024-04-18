@@ -114,49 +114,44 @@ var currentDate = new Date();
 var weekNumber = getWeekNumber(currentDate);
 document.getElementById('weekNumberDisplay').innerText = "Tuần của thời gian hiện tại là tuần " + weekNumber;
 function getWeekNumber(date) {
-    // Tính toán thứ của ngày 1/1 của năm hiện tại
+
     var startOfYear = new Date(date.getFullYear(), 0, 1);
     var dayOfWeek = startOfYear.getDay();
     
-    // Tính toán ngày đầu tiên của tuần đầu tiên trong năm
+
     var firstWeekStartDate = startOfYear;
     if (dayOfWeek > 0) {
         firstWeekStartDate.setDate(1 + (7 - dayOfWeek));
     }
 
-    // Tính toán số ngày giữa ngày 1/1 và ngày hiện tại
     var differenceInDays = Math.floor((date - firstWeekStartDate) / (24 * 60 * 60 * 1000));
-    
-    // Tính toán số tuần dựa trên số ngày tính được
+
     var weekNumber = Math.ceil((differenceInDays + 1) / 7);
 
     return weekNumber;
 }
 function getWeekNumberFromDate() {
   inputDate = document.getElementById('dateConvert').value
-    // Tách ngày, tháng và năm từ chuỗi đầu vào
+ 
     var dateParts = inputDate.split('/');
     var day = parseInt(dateParts[0]);
     var month = parseInt(dateParts[1]);
     var year = parseInt(dateParts[2]);
 
-    // Tạo một đối tượng Date từ ngày/tháng/năm được cung cấp
+
     var date = new Date(year, month - 1, day);
 
-    // Tính toán thứ của ngày 1/1 của năm hiện tại
     var startOfYear = new Date(date.getFullYear(), 0, 1);
     var dayOfWeek = startOfYear.getDay();
     
-    // Tính toán ngày đầu tiên của tuần đầu tiên trong năm
+
     var firstWeekStartDate = startOfYear;
     if (dayOfWeek > 0) {
         firstWeekStartDate.setDate(1 + (7 - dayOfWeek));
     }
 
-    // Tính toán số ngày giữa ngày 1/1 và ngày hiện tại
     var differenceInDays = Math.floor((date - firstWeekStartDate) / (24 * 60 * 60 * 1000));
 
-    // Tính toán số tuần dựa trên số ngày tính được
     var weekNumber = Math.floor(differenceInDays / 7) + 1;
     document.getElementById('displayConver').innerText = "Week " + weekNumber;
 }

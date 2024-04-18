@@ -22,7 +22,26 @@ const database = firebase.database()
 
 
 
+var currentDate = new Date();
+var weekNumber = getWeekNumber(currentDate);
+document.getElementById('weekNumberDisplay').innerText = "Week Number Of Current Time : " + weekNumber;
+function getWeekNumber(date) {
 
+    var startOfYear = new Date(date.getFullYear(), 0, 1);
+    var dayOfWeek = startOfYear.getDay();
+    
+
+    var firstWeekStartDate = startOfYear;
+    if (dayOfWeek > 0) {
+        firstWeekStartDate.setDate(1 + (7 - dayOfWeek));
+    }
+
+    var differenceInDays = Math.floor((date - firstWeekStartDate) / (24 * 60 * 60 * 1000));
+
+    var weekNumber = Math.ceil((differenceInDays + 1) / 7) + 1;
+
+    return weekNumber;
+}
 function valid_email(email) {
     expression = /^[^@]+@\w+(\.\w+)+\w$/
     if (expression.test(email) == true) {
@@ -56,44 +75,6 @@ function valid_name(name){
 
 
 
-//+ firebase.auth().currentUser.uid
-function deletePatient(patientKey, Clinic, patinetDiv, editButton, deleteButton){
-    const confirmDelete = confirm('Are you sure to delete this patient?')
-    console.log(Clinic)
-    console.log(patientKey)
-    if(confirmDelete){
-        database.ref('patientList/' + Clinic + '/' + patientKey).remove()
-        .then(() => {
-            console.log('Bệnh nhân đã được xóa khỏi cơ sở dữ liệu.');
-            patinetDiv.remove()
-            editButton.style.display = 'none';
-            deleteButton.style.display = 'none';
-            document.getElementById('searchInput').value = '';
-            document.getElementById("CLINIC2").value = '';
-        })
-        .catch((error) => {
-            console.error('Lỗi khi xóa bệnh nhân:', error);
-        });
-    }
-}
-function editPatientInfo(patientID, name,phone){
-    const newName = prompt("Nhập tên", name)
-    const newSDT = prompt("Nhập sđt", phone)
-
-    if(newName !== null && newSDT !== null){
- 
-        database.ref('patientList/' + patientID).update({
-            Ho_va_ten: newName,
-            SDT: newSDT
-        })
-        .then(()=>{
-            alert('cap nhat thanh cong')
-        }
-        ) .catch((error) => {
-            console.error("kooix",error)
-        })
-    }
-}
 
 
  function logout(){

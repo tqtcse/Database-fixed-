@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Login </title>
+        
     </head>
     <body>   
        <div>Save Medicine To Database</div> 
@@ -72,7 +72,7 @@
             function findMedicine(){
                 Id = document.getElementById("FindMedicine").value
                 Clinic = document.getElementById("specialist").value
-
+                i = 0;
                 database.ref('Medicine/' + Clinic).once('value',function(snapshot){
                     snapshot.forEach((childSnapshot) => {
                         
@@ -89,21 +89,20 @@
                                 IdFromData = childSnapshot3.val().IdMedicine
                              
                                 if ((currentDate < EX) && (Id === IdFromData)) {
-                                    console.log(childSnapshot3.val().IdMedicine)
-                                    console.log(childSnapshot2.val())
-                                    //console.log(childSnapshot2.val())
-                                    //if(child)
+                                    i = i + 1
+                                    
                     ButtonDiv1 = document.getElementById('ButtonCanUse')
                     ButtonDiv1.style.display = 'none'
 
                     const MedInfoDiv1 = document.getElementById('MedicineDiv');
-                    MedInfoDiv1.innerHTML = ''; // Xóa bỏ nội dung cũ trước khi thêm mới
+                    
 
                     MedInfoDiv1.style.display = 'block';
+                    
+                    const newDiv = document.createElement('div')
 
-                    const MedDiv1 = document.createElement('div');
 
-                    MedDiv1.innerHTML = `
+                    newDiv.innerHTML = `
                             <p>Clinic: ${childSnapshot3.val().Clinic}</p>
                             <p>Medicine Name: ${childSnapshot3.val().MedicineName}</p>
                             <p>ID Medicine: ${childSnapshot3.val().IdMedicine}</p>
@@ -115,30 +114,38 @@
                 `;
 
                     const hideButton1 = document.createElement('button');
-                    hideButton1.textContent = "Hide";                   
+                    hideButton1.textContent = "Hide";      
+
+                    const deleteButton1 = document.createElement('button');
+                    deleteButton1.textContent = "Delete";
+
                     hideButton1.addEventListener('click', () => {
                     ButtonDiv1.style.display = 'block';
-                    MedInfoDiv1.style.display = 'none';
+                    //MedInfoDiv1.style.display = 'none';
+                    hideButton1.style.display = 'none'
+                    deleteButton1.style.display = 'none'
+                    newDiv.innerHTML = ''; 
+
                 });
                     
 
 
 
-                    const deleteButton1 = document.createElement('button');
-                    deleteButton1.textContent = "Delete";
+
                     deleteButton1.addEventListener('click', () => {
                     
                         childSnapshot3.ref.remove()
                         ButtonDiv1.style.display = 'block';
-                        MedInfoDiv1.style.display = 'none';
-                        findMedicine();
+                        newDiv.innerHTML = ''
+                        hideButton1.style.display = 'none'
+                        deleteButton1.style.display = 'none'
 
                 });
 
                 
 
 
-                MedInfoDiv1.appendChild(MedDiv1);
+                MedInfoDiv1.appendChild(newDiv);
                 MedInfoDiv1.appendChild(deleteButton1);
                 MedInfoDiv1.appendChild(hideButton1);
 
@@ -150,7 +157,7 @@
                 })
             }
             function findExpiredMedicine(){
-
+                i = 0
                 Clinic = document.getElementById("specialist").value
                 database.ref('Medicine/' + Clinic).once('value',function(snapshot){
                     snapshot.forEach((childSnapshot) => {
@@ -167,18 +174,22 @@
     
                                
                                 if (currentDate > EX) {
-                                    //console.log(childSnapshot2.val())
+                                    i = i + 1;
+                                    
                                     ButtonDiv = document.getElementById('Button')
+
                     ButtonDiv.style.display = 'none'
 
                     const MedInfoDiv = document.getElementById('ExpireDiv');
-                    MedInfoDiv.innerHTML = ''; // Xóa bỏ nội dung cũ trước khi thêm mới
+                    
 
                     MedInfoDiv.style.display = 'block';
 
-                    const MedDiv = document.createElement('div');
+                    const newDiv = document.createElement('div');
+                    
 
-                    MedDiv.innerHTML = `
+
+                    newDiv.innerHTML = `
                             <p>Clinic: ${childSnapshot3.val().Clinic}</p>
                             <p>Medicine Name: ${childSnapshot3.val().MedicineName}</p>
                             <p>ID Medicine: ${childSnapshot3.val().IdMedicine}</p>
@@ -190,30 +201,36 @@
                 `;
 
                     const hideButton = document.createElement('button');
-                    hideButton.textContent = "Hide";                   
+                    hideButton.textContent = "Hide"; 
+                    
+                    const deleteButton = document.createElement('button');
+                    deleteButton.textContent = "Delete";
+
                     hideButton.addEventListener('click', () => {
                     ButtonDiv.style.display = 'block';
-                    MedInfoDiv.style.display = 'none';
+                    newDiv.innerHTML = ''
+
+                    hideButton.style.display = 'none'
+                    deleteButton.style.display = 'none'
                 });
                     
 
 
 
-                    const deleteButton = document.createElement('button');
-                    deleteButton.textContent = "Delete";
+                    
                     deleteButton.addEventListener('click', () => {
                     
                         childSnapshot3.ref.remove()
                         ButtonDiv.style.display = 'block';
                         MedInfoDiv.style.display = 'none';
-                        findExpiredMedicine();
+                        //findExpiredMedicine();
 
                 });
 
                 
 
 
-                MedInfoDiv.appendChild(MedDiv);
+                MedInfoDiv.appendChild(newDiv);
                 MedInfoDiv.appendChild(deleteButton);
                 MedInfoDiv.appendChild(hideButton);
 
@@ -223,9 +240,7 @@
                     })
                 })
             }
-            function deleteExpiredBill(){
-
-            }
+         
             function submitMedicine(){
             
               Clinic = document.getElementById("specialist").value
