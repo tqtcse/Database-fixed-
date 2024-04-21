@@ -148,9 +148,11 @@ app.post('/api/login', (req, res) => {
     const assistSnapshot = snapshot[1];
     const adminSnapshot = snapshot[2];
     const nurseSnapshot = snapshot[3];
+    const patientSnapshot = snapshot[4];
+
     if(doctorSnapshot.exists()){
         doctorSnapshot.forEach((childSnapshot) => {
-         // console.log('hi')
+
            const id = childSnapshot.val().PhoneNumber;
           const doctor = childSnapshot.val().Role;
            const customClaims = {
@@ -177,7 +179,7 @@ app.post('/api/login', (req, res) => {
           res.send(customToken)
       })
       })
-    } else if(nurseSnapshot){
+    } else if(nurseSnapshot.exists()){
       nurseSnapshot.forEach((childSnapshot) => {
        
         const id = childSnapshot.val().PhoneNumber;
@@ -191,7 +193,7 @@ app.post('/api/login', (req, res) => {
       })
       })
     }
-     else if (adminSnapshot){
+     else if (adminSnapshot.exists()){
       adminSnapshot.forEach((childSnapshot) => {
          
         const id = childSnapshot.val().PhoneNumber;
@@ -206,7 +208,19 @@ app.post('/api/login', (req, res) => {
       })
     }
     else {
-      console.log('patient')
+      patientSnapshot.forEach((childSnapshot) => {
+
+
+        const id = childSnapshot.val().PhoneNumber
+        const customClaims = {
+          role: 'patient'
+        }
+      admin.auth().createCustomToken(id, customClaims)
+      .then((customToken) => {
+        res.send(customToken)
+      })
+
+      })
     }
 
   }).catch((error) => {
