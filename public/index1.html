@@ -5,6 +5,7 @@
         <title>Login </title>
     </head>
     <body>
+        <span id="weekNumberDisplay"></span>
         <div id ="HOME">
             <a href="index1.html">Home</a>
         </div>
@@ -45,7 +46,6 @@
 
                     console.log("User is signd in")
                     const isHaveToken = localStorage.getItem('customToken')
-                    //console.log(isHaveToken)
                     
                     localStorage.setItem('userID',user.uid)
                     if (isHaveToken) {
@@ -120,8 +120,6 @@
             })
                 })
             })
-            
-
 
         } 
        } catch(error){

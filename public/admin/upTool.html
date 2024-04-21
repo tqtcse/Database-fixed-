@@ -30,6 +30,10 @@
                     </option>
                 </datalist>
             </div>
+            <div>
+                Maintenance History
+                <div><textarea id="Maintenance" placeholder="Maintenance History" rows="4" cols="50"></textarea></div>
+            </div>
             <div> Price
                 <div><input type="text" id="Price" placeholder="Price"?></div>
             </div>
@@ -88,22 +92,21 @@
                                 const currentDate = new Date()
                                 
                                 IdFromData = childSnapshot3.val().IdTool
-                                //i = i + 1
-                    //console.log(i)
+                                
                                 if ((currentDate < EX) && (Id === IdFromData)) {
                                    
                     ButtonDiv1 = document.getElementById('ButtonCanUse')
                     ButtonDiv1.style.display = 'none'
 
                     i = i + 1
-                   // console.log(i)
+                   
 
                     const newDiv = document.createElement('div')
                     newDiv.id = 'ToolDiv' + i
 
 
                     const MedInfoDiv1 = document.getElementById('ToolDiv' );
-                    //MedInfoDiv1.innerHTML = ''; // Xóa bỏ nội dung cũ trước khi thêm mới
+                    
 
                     MedInfoDiv1.style.display = 'block';
 
@@ -161,7 +164,7 @@
                         editTool(childSnapshot3.val().Clinic, childSnapshot3.val().ToolName, 
                     childSnapshot3.val().IdTool, childSnapshot3.val().ManufacturingDate,
                 childSnapshot3.val().ExpireDate, childSnapshot3.val().Place, childSnapshot3.val().Quantity,
-            childSnapshot3.val().Price)
+            childSnapshot3.val().Price, childSnapshot3.val().Maintenance)
                     })
 
                 
@@ -180,7 +183,7 @@
                     })
                 })
             }
-            function editTool(Clinic, ToolName, IdTool, MD, ED, Place, Quantity, Price){
+            function editTool(Clinic, ToolName, IdTool, MD, ED, Place, Quantity, Price, Maintain){
 
                 const newClinic = prompt("Enter Clinic", Clinic)
                 const newToolName = prompt("Enter ToolName", ToolName)
@@ -190,8 +193,10 @@
                 const newPlace = prompt("Enter Place", Place)
                 const newQuantity = prompt("Enter Quantity", Quantity)
                 const newPrice = prompt("Enter Price", Price)
+                const newMaintenance = prompt("Enter New Maintenance", Maintain)
+
+
                 
-                oldClinic = document.getElementById("")
                
                     var data = {
                     
@@ -202,7 +207,8 @@
                     ExpireDate : newED,
                     Place : newPlace,
                     Clinic : newClinic,
-                    Price : newPrice
+                    Price : newPrice,
+                    Maintenance : newMaintenance
 
                 }
 
@@ -255,6 +261,7 @@ database.ref('Tool/' + Clinic).once('value',function(snapshot){
             <p>Place: ${childSnapshot3.val().Place}</p>
             <p>Quantity: ${childSnapshot3.val().Quantity}</p>
             <p>Price: ${childSnapshot3.val().Price}</p>
+            <p>${childSnapshot3.val().Maintenance}</p>
         `;
 
     const hideButton = document.createElement('button');
@@ -308,6 +315,7 @@ function submitTool(){
             Expire = document.getElementById("expire").value
             Place = document.getElementById("place").value
             Price = document.getElementById("Price").value
+            Matain =  document.getElementById("Maintenance").value
 
           const ToolRef = firebase.database().ref('Tool')
           ToolRef.once('value', (snapshot) => {
@@ -321,7 +329,9 @@ function submitTool(){
                       ExpireDate : Expire,
                       Place : Place,
                       Clinic : Clinic,
-                      Price : Price
+                      Price : Pric,
+                      Maintenance : Matain,
+                      
 
                   }
                   console.log('create new Tool')
@@ -343,7 +353,8 @@ function submitTool(){
                       ExpireDate : Expire,
                       Place : Place,
                       Clinic : Clinic,
-                      Price : Price
+                      Price : Price,
+                      Maintenance : Matain
 
                   }
                   console.log('Add success')
@@ -367,7 +378,8 @@ function submitTool(){
                       ExpireDate : Expire,
                       Place : Place,
                       Clinic : Clinic,
-                      Price : Price
+                      Price : Price,
+                      Maintenance : Matain
 
                   }
                   console.log('Add success')
