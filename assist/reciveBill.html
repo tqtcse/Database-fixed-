@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<head>
+
+</head>
+
+<body>
+    
+    <div><span id="weekNumberDisplay"></span></div>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+   <script src="../index1.js"></script>
+Find Patient Bill
+<div><input type="text" id="PhoneNumber" placeholder="Find By Phone"></div>
+<div><input type="text" id="FindBill" placeholder="Find Bill By ID"></div>
+<input type="text" id="CLINIC" list="CLINIC_LIST" placeholder="Choose Clinic">
+<datalist id="CLINIC_LIST">
+    <option value="Ophthalmology">
+    <option value="Otorhinolaryngology">
+    <option value="Dermatology">
+    </option>
+</datalist>
+<div><button onclick="findBill()">Find Bill</button></div>
+<div id="BillInformation"></div>
+
+<div id="Edit"></div>
+</body>
+<script>
+var currentDate = new Date();
+var weekNumber = getWeekNumber(currentDate);
+document.getElementById('weekNumberDisplay').innerText = "Tuần của thời gian hiện tại là tuần " + weekNumber;
+function getWeekNumber(date) {
+
+    var startOfYear = new Date(date.getFullYear(), 0, 1);
+    var dayOfWeek = startOfYear.getDay();
+    
+
+    var firstWeekStartDate = startOfYear;
+    if (dayOfWeek > 0) {
+        firstWeekStartDate.setDate(1 + (7 - dayOfWeek));
+    }
+
+    var differenceInDays = Math.floor((date - firstWeekStartDate) / (24 * 60 * 60 * 1000));
+
+    var weekNumber = Math.ceil((differenceInDays + 1) / 7) + 1;
+
+    return weekNumber;
+}
+
+function findBill(){
+    const EditDiv = document.getElementById('Edit')
+    const BillInfoDiv = document.getElementById('BillInformation')
+    BillInfoDiv.innerHTML = '';
+
+
+    Clinic = document.getElementById("CLINIC").value 
+    BillID = document.getElementById("FindBill").value
+    PhoneNumber = document.getElementById("PhoneNumber").value
+    console.log(Clinic)
+    console.log(BillID)
+    database.ref('Bill/' + Clinic +'/' + PhoneNumber + '/' + BillID).once('value', function(snapshot){
+        
+
+
+
+        const BillInfoDiv = document.getElementById('BillInformation')
+        const BillDiv = document.createElement('div')
+        BillDiv.innerHTML = `
+        <p>Clinic: ${snapshot.val().Clinic}</p>
+        <p>Id Bill: ${snapshot.val().IdBill}</p>
+        <p>Detail Bill: ${snapshot.val().DetailBill}</p>
+        <p>Price: ${snapshot.val().Price}</p>
+        <p>Status: ${snapshot.val().Status}</p>`
+
+        BillInfoDiv.appendChild(BillDiv)
+
+        const editButton = document.createElement('button')
+        editButton.textContent = 'Edit'
+        editButton.addEventListener('click', () => {
+            editBill(PhoneNumber, Clinic, BillID, snapshot.val().Status, snapshot.val().Price  )
+        })
+        BillInfoDiv.appendChild(editButton)
+
+        const hideButton = document.createElement('button')
+        hideButton.textContent = 'Hide'
+        hideButton.addEventListener('click', () => {
+            BillInfoDiv.innerHTML = '';
+            EditDiv.innerHTML = '';
+        })
+        BillInfoDiv.appendChild(hideButton)
+        
+    })
+}
+function editBill(PhoneNumber, Clinic, BillID, StatusValue, Price){
+    
+    const statusInput = document.createElement('input');
+    statusInput.type = 'text';
+    statusInput.placeholder = 'New Status';
+
+    const saveButton = document.createElement('button');
+    saveButton.textContent = 'Save';
+    saveButton.addEventListener('click', () => {
+
+        const newStatus = statusInput.value;
+        console.log('hi')
+        database.ref('Bill/' + Clinic + '/' + PhoneNumber + '/' + BillID).update({
+            Status: newStatus
+        })
+       
+        database.ref('Revenue/' + Clinic + '/' + weekNumber + '/' + 'Profit').once('value', function(snapshot){
+            console.log(snapshot.val())
+            if(!snapshot.exists()){
+                var data = {
+                Profit : Price,
+        }
+        database.ref('Revenue/' + Clinic + '/' + weekNumber + '/' + 'Profit').set(data)
+            }
+            else {
+                database.ref('Revenue/' + Clinic + '/' + weekNumber + '/' + 'Profit').once('value', function(snapshot){
+                    ProfitData = parseInt(snapshot.val().Profit)
+                    ProfitBill = parseInt(Price)
+
+                    console.log(ProfitData)
+                    console.log(ProfitBill)
+                    Total = ProfitData + ProfitBill
+                    var data = {
+                        Profit : Total,
+                    }
+                    database.ref('Revenue/' + Clinic + '/' + weekNumber + '/' + 'Profit').set(data)
+                })
+            }
+        })
+
+
+        findBill()
+
+    });
+    const BillInfoDiv = document.getElementById('Edit');
+    BillInfoDiv.innerHTML = ''; // Clear previous content
+
+    BillInfoDiv.appendChild(statusInput);
+    BillInfoDiv.appendChild(saveButton);
+}
+
+
+</script>

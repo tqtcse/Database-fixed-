@@ -1,0 +1,754 @@
+
+#Header {
+    display: block;
+    position: relative;
+    height: 88px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 85px;
+    padding-right: 85px;
+    border-bottom-width: 0.8px;
+    line-height: 18px;
+    font-weight: 400;
+    font-size: 12px;
+    border-bottom: rgb(4, 7, 68) solid 10px;
+    background-color: aliceblue;
+  }
+  
+  /* .Header-line {
+    background-color: #08399c;
+    width: 100%;
+    height: 10px;
+  } */
+  .row {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  
+  .col-lg-2.col-6 {
+    display: block;
+    box-sizing: border-box;
+    flex-basis: 16.6667%;
+    max-width: 16.6667%;
+    height: 100%;
+    position: relative;
+    text-align: left;
+  }
+  
+  .Logo {
+    box-sizing: border-box;
+    color: rgb(85, 85, 85);
+    display: block;
+    font-family: "Noto Sans JP", Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    height: 50px;
+    line-height: 18px;
+    text-align: left;
+    text-size-adjust: 100%;
+    width: 160px;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
+  
+  
+  .Logo h1 {
+    box-sizing: border-box;
+    color: rgb(4, 7, 68);
+    display: block;
+    font-family: "Noto Sans JP", Helvetica, sans-serif;
+    font-size: 40px;
+    font-weight: 500;
+    height: 50px;
+    line-height: 40px;
+    margin-block-end: 0px;
+    margin-block-start: 0px;
+    margin-bottom: 0px;
+    margin-inline-end: 0px;
+    margin-inline-start: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+    padding-top: 20px;
+    text-align: left;
+    text-size-adjust: 100%;
+    width: 160px;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
+  .Logo h1 a {
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url(https://www.booknmeet.com/img/bnm/BOOKNMEET.svg);
+    background-origin: padding-box;
+    background-position-x: 0%;
+    background-position-y: 0%;
+    background-repeat: no-repeat;
+    background-size: 165px 30px;
+    box-sizing: border-box;
+    color: rgb(0, 184, 255);
+    cursor: pointer;
+    display: block;
+    font-family: "Noto Sans JP", Helvetica, sans-serif;
+    font-size: 40px;
+    font-weight: 500;
+    height: 30px;
+    line-height: 40px;
+    outline-color: rgb(0, 184, 255);
+    outline-style: none;
+    outline-width: 0px;
+    text-align: left;
+    text-decoration-color: rgb(0, 184, 255);
+    text-decoration-line: none;
+    text-decoration-style: solid;
+    text-decoration-thickness: auto;
+    text-indent: -9999px;
+    text-size-adjust: 100%;
+    transition-behavior: normal;
+    transition-delay: 0s;
+    transition-duration: 0.5s;
+    transition-property: all;
+    transition-timing-function: ease-in-out;
+    width: 165px;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
+  
+  .col-lg-10.col-6 {
+    display: block;
+    box-sizing: border-box;
+    flex-basis: 83.3333%;
+    max-width: 83.3333%;
+    height: 100%;
+    position: relative;
+    text-align: left;
+  }
+  
+  .main-menu {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin-top: -20px;
+  }
+  
+  .nav {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: end;
+  }
+  
+  .nav li {
+    display: inline-block;
+    height: 100%;
+    padding: 10px;
+  }
+  
+  .nav li a {
+    display: block;
+    color: rgb(32, 32, 121);
+    text-decoration: none;
+    line-height: 68px;
+    height: 100%;
+    font-weight: 500;
+    font-size: 18px;
+    
+  }
+  
+  .nav li a small {
+    display: block;
+    color: rgb(8, 57, 156);
+    margin-top: -45px;
+    line-height: 65px;
+    font-size: 14px;
+  }
+  
+  .nav li:hover a {
+    color: #00b8ff; 
+  }
+  
+  .nav li a i {
+    font-size: 30px;
+   
+  }
+  * {
+    padding : 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  /* ------------------------------------------------------------ */
+  .Footer {
+  
+  }
+  .row.add_top_60.justify-content-around.text-right{
+      margin-top: 60px;
+      margin-bottom: 0px;
+      margin-left: -15px;
+      margin-right: -15px;
+      justify-content: space-around;
+  }
+  #app_section{
+      background-image: url(https://www.booknmeet.com/img/hero_bg_1.svg);
+      background-repeat: repeat ;
+      background-color :  #040744;
+      background-position-x: 0;
+      background-position-y: 0;
+      background-size: auto;
+      background-origin: padding-box;
+      box-sizing: border-box;
+      font-size: 12px;
+      font-weight: 400;
+      display: block;
+      line-height: 18px;
+      padding-bottom: 60px;
+      padding-top: 90px;
+      text-align: left;
+      text-size-adjust: 100%;
+      background-attachment: fixed;
+      -webkit-font-smoothing: antialiased;
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
+      color: #fff
+  }
+  .img-fluid-home{
+      width: 400px;
+      height: 200px;
+  }
+  .btn.btn-sm.btn-primary{
+      background-color: #00b8ff;
+      padding: 5px;
+      border: 0.8px solid #00b8ff;
+      box-sizing: border-box;
+      color: #fff;
+      border-radius: 3.2px;
+      text-decoration: none;
+  }
+  .btn.btn-sm.btn-primary:hover{
+      background-color: #fff;
+      color: #00b8ff;
+  }
+  #homepagesection.col-md-6 .lead{
+      text-align:justify;
+  }
+   #homepagesection.col-md-6{
+      padding: 0px 15px ;
+      box-sizing: border-box;
+      color: #fff;
+      display: block;
+      flex-basis: 50%;
+      position: relative;
+      text-align: left;
+      text-size-adjust: 100%;
+      width: auto;
+      max-width: 50%;
+      -webkit-font-smoothing: antialiased;
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
+  }
+  .text-right #homepagesection.col-md-6{
+      text-align: right;
+  }
+  #app_section .container{
+      box-sizing: border-box;
+      display: block;
+      font-family:"Noto Sans JP",Helvetica,sans-serif;
+      font-weight: 400;
+      margin-left: auto ;
+      margin-right: auto;
+      padding-left: 15px;
+      padding-right: 15px;
+  }
+  .col-md-5{
+      padding: 0px 15px;
+  }
+  #homepagesection.col-md-6 h3{
+      margin-bottom: 8px;
+  }
+  #app_section small {
+      font-weight: 600;
+      font-size: 13px;
+      font-size: .8125rem;
+      opacity: .6
+  }
+  #app_section h3 {
+      color: #fff;
+      font-size: 32px;
+      font-weight: 100;
+      font-size: 1.1rem
+  }
+  #app_section h3 strong {
+      color: #00deb9
+  }
+  #app_section p {
+      margin-bottom: 60px
+  }
+  p.lead {
+      font-weight: 100;
+      font-size: 20px;
+      font-size: .83rem
+  }
+  
+  
+  footer .container.margin_60_35{
+      box-sizing: border-box;
+      display: block;
+      font-family: "Noto Sans JP", Helvetica, sans-serif;
+      color: rgb(85, 85, 85);
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 18px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 60px 15px 35px;
+      text-align: left;
+      text-size-adjust: 100%;
+      -webkit-font-smoothing : antialiased;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
+  .col-lg-4.col-md-12 p{
+      margin-bottom: 15px;
+      text-align: justify;
+  }
+  .margin_60_35 h5 {
+      margin-bottom: 15px;
+      color: rgb(153, 153, 153);
+      font-size: 13px;
+      line-height:15.936px;
+  }
+  .follow_us ul{
+      display: flex;
+      list-style-type: none;
+  }
+  .fa{
+      margin-right: 10px;
+      font-feature-settings: normal;
+      font-size: 16px;
+      color: #00b8ff;
+  }
+  .fab{
+      margin-right: 10px;
+      font-feature-settings: normal;
+      font-size: 16px;
+      color: #00b8ff;
+  }
+  .contacts a{
+      color: rgb(85, 85, 85);
+      text-decoration: none;
+      text-decoration-line: none;
+      text-decoration-style: solid;
+      text-decoration-thickness: auto;
+      outline-style: none;
+      transition-duration: 0.3s;
+  }
+  .contacts a:hover{
+      color: #00b8ff;
+  }
+  .contacts{
+      list-style-type: none;
+      text-decoration: none;
+      margin-bottom: 35px;
+  }
+  .links{
+      list-style-type: none;
+      margin-bottom: 35px;
+  }
+  .links a{
+      color: rgb(85, 85, 85);
+      text-decoration: none;
+      text-decoration-line: none;
+      text-decoration-style: solid;
+      text-decoration-thickness: auto;
+      outline-style: none;
+      transition-duration: 0.3s;
+  }
+  .links li{
+      margin-bottom: 10px;
+  }
+  .links a:hover{
+      color: #00b8ff;
+  }
+  .links a:hover::after{
+      content: "\f105";
+      font-family: "Font Awesome 5 Free";
+      font-weight: 900;
+      font-size: 12px;
+      margin-left: 5px;
+      transition-duration: 0.5s;
+  }
+  .col-lg-3.col-md-4 p{
+      margin-bottom: 15px;
+      text-align: justify;
+  }
+  
+  .col-lg-4.col-md-12{
+      display: block;
+      box-sizing: border-box;
+      flex-basis: 33.3333%;
+      max-width: 33.3333%;
+      height: 100%;
+      position: relative;
+      text-align: left;
+      padding-left: 15px;
+      padding-right: 15px;
+  }
+  .row .col-lg-3.col-md-4{
+      display: block;
+      box-sizing: border-box;
+      flex-basis: 25%;
+      max-width: 25%;
+      height: 100%;
+      position: relative;
+      text-align: left;
+      padding-left: 15px;
+      padding-right: 15px;
+  }
+  .col-lg-5.col-md-5{
+      max-width: 41.6667%;
+      flex-basis: 41.6667%;
+      padding-left: 15px;
+      padding-right: 15px;
+      font-size: 13px;
+  }
+  .col-lg-5.col-md-5 h5{
+      margin-bottom: 15px;
+      color: rgb(153, 153, 153);
+      font-size: 13px;
+      line-height: 15.936px;
+  }
+  #email_id{
+      color: #00b8ff;
+      padding: 6px 12px;
+      border-radius: 5px;
+      background-color: #fff;
+      border: 1px solid #00b8ff; 
+      font-size: 15px;
+      margin-bottom: 10px;
+  }
+  .btn_1{
+      background-color: #00b8ff;
+      padding: 7px 20px;
+      border-radius: 5px;
+      color: #fff;
+      border: 1px solid #00b8ff;
+      font-size: 14px;
+      text-decoration: none;
+  }
+  .btn_1:hover{
+      background-color: #3673b5;
+      color: #00b8ff;
+      transition-duration: 0.3s;
+  }
+  .col-lg-5.col-md-5 .btn.btn-sm.btn-primary{
+      background-color: #00b8ff;
+      padding: 5px;
+      border: 0.8px solid #00b8ff;
+      box-sizing: border-box;
+      color: #fff;
+      border-radius: 3.2px;
+      text-decoration: none;
+      text-align: center;
+      display: inline-block;
+  }
+  .col-lg-5.col-md-5 .btn.btn-sm.btn-primary:hover{
+      background-color: #3673b5;
+      color: #00b8ff;
+      transition-duration: 0.3s;
+  }
+  .col-lg-5.col-md-5 .btn.btn-sm.btn-primary i{
+      margin-right: 5px;
+  }
+  .col-lg-5.col-md-5 p{
+      margin-bottom: 15px;
+      text-align: justify;
+  }
+  .row .col-md-12 p {
+      margin-bottom: 15px;
+      text-align: justify;
+  }
+  .row{
+      margin: 0px 15px;
+  }
+  .col-md-12{
+      padding: 0px 15px ;
+  }
+  .additional_links ul{
+      display: flex;
+      list-style-type: none;
+  }
+  .row .col-md-8{
+      padding: 0px 15px;
+      flex-basis: 66.6667%;
+      max-width: 66.6667%;
+  }
+  .row .col-md-8 #additional_links{
+      display: flex;
+      margin-top: 15px;
+      list-style-type: none;
+  }
+  #additional_links li{
+      margin-right: 10px;
+      text-decoration-line: none;
+  }
+  #additional_links li a{
+      color: black;
+      text-decoration: none;
+      text-decoration-line: none;
+      text-decoration-style: solid;
+      text-decoration-thickness: auto;
+      outline-style: none;
+      transition-duration: 0.3s;
+  }
+  #additional_links li a:hover{
+      color: #3673b5;
+      transition-duration: 0.7s;
+  }
+  #additional_links li a::after{
+   /* gạch dọc  */
+      content: "|";
+      margin-left: 10px;
+      margin-right: 10px;
+      color: black;
+  }
+  /* không có phần tử giả */
+  #additional_links li:last-child a::after{
+      content: "";
+  }
+  .row .col-md-4{
+      padding: 0px 15px;
+      flex-basis: 33.3333%;
+      max-width: 33.3333%;
+  }
+  .row .col-md-4 #copy a{
+      text-decoration-line: none;
+  
+  }
+  .row .col-md-4 #copy a:hover{
+      color: #3673b5;
+      transition-duration: 0.7s;
+  }
+  
+  /* ------------------------------------------------------------ */
+  
+  body {
+      font-family: "Noto Sans JP", Helvetica, sans-serif;
+      margin: 0;
+      padding: 10px;
+      background-attachment: scroll;
+      /* background-image: url(https://img.freepik.com/free-vector/abstract-geometric-hexagonal-medical_1017-15002.jpg?w=996&t=st=1712487656~exp=1712488256~hmac=5e8d7f78006a225d5492e9ddc98e35fd8a25e3ef5c523794c8bb6bbf7c85f8ea);
+      background-repeat: no-repeat;
+      background-size: cover; */
+      /* background-image: url(doctordetailbackground.png);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed; */
+    }
+    #bg{
+      background-image: url(img/nursedetailbackground.avif);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+    }
+    #test1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: rgb(0, 184, 255);
+      /* background-color: rgb(4,7,68); */
+      background-color: #00203FFF;
+      background-image: url(https://www.booknmeet.com/img/hero_bg_1.svg);
+      background-size: cover;
+      
+    }
+    h1#form {
+      margin-top: 0;
+      padding-top: 0px;
+      padding-bottom: 10px;
+    
+    }
+    
+    #infor1 {
+      
+      /* display:flex;
+      box-sizing: border-box;
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap; */
+      display: flex;
+      /* justify-content: center; */
+      /* align-items: center; */
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 5px;
+      padding: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 58%;
+      height: auto;
+      margin: 0 auto;
+      backdrop-filter: blur(2px);
+      
+    }
+  
+    #ava {
+      display: block;
+      flex-basis: 50%;
+      max-width: 50%;
+      position: relative;
+      margin-right: 20px;
+      box-sizing:border-box;
+      border:solid #5B6DCD 1px;
+      border-style: dotted;
+  
+    }
+    #detail {
+      display: block;
+      width: 100%;
+      flex-basis: 48%;
+      max-width: 48%;
+      position: relative;  
+      background-image: url(https://www.booknmeet.com/img/hero_bg_1.svg);
+    }
+  
+  
+    .header2{
+      margin-top: 0;
+      margin-bottom: 10px;
+      text-align: center;
+      padding: 10px 0;
+      background-color: rgb(0, 184, 255);
+      background-image: url(https://www.booknmeet.com/img/hero_bg_1.svg);
+      color: rgb(32, 32, 121);
+      font-weight: bold;
+      border-bottom: 1px solid #ccc;
+      font-size: 15px;
+    }
+    /* .header2.below{
+      margin-top: 10px;
+    } */
+    #avatop {
+      height: 50%;
+      background-image: url(https://www.booknmeet.com/img/hero_bg_1.svg);
+    }
+    #avabelow {
+      height: 50%;
+      background-image: url(https://www.booknmeet.com/img/hero_bg_1.svg);
+    }
+    input[type="text"] {
+      display: block;
+      width: 100%;
+      /* height: auto; */
+      padding: 15px;
+      margin-bottom: 10px;
+      border: 1px solid rgb(0, 184, 255);      
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+   
+    input[type="file"] {
+      margin-top: 10px;
+    }
+    
+    #button_cointer {
+      text-align: center;
+      margin-top: 20px;
+    }
+    
+   
+    #ava img {
+      width: auto;
+      height: 100%;
+      margin-bottom: 10px;
+      
+    }
+    label{
+      font-size: 14px;
+      font-style :normal;
+      color: #2432ab;
+    }
+  
+  
+    .form-field i{
+      position: absolute;
+      top: 50%;
+      right: 16px;
+      transform: translateY(-50%);
+      color: #999;
+      transition: 0.25s ease;
+    }
+    
+  
+    .form-input {
+      width: 100%;
+      padding: 0 20px;
+      /* height: 50px; */
+      border: 1px solid rgb(0, 184, 255);      
+      border-radius: 4px;
+      transition: 0.25s ease;
+      /* outline: none; */
+      outline-color: #2432ab;
+    }
+    
+    .form-input:focus {
+      border-color: #2432ab;
+    }
+    .form-field {
+     position: relative;
+    }
+    .form-label {
+      position: absolute;
+      top: 50%;
+      left: 16px;
+      transform: translateY(-50%);
+      user-select: none;
+      pointer-events: none;
+      color: #999;
+      transition: 0.25s ease;
+    }
+    .form-input:not(:placeholder-shown) + .form-label,
+    .form-input:focus + .form-label{
+      color : #2432ab;  
+      top : 0px;
+      left: 6px;
+      padding: 0 10px;
+      display: inline-block;
+      background-color: white;
+    }
+  
+  
+  
+    button {
+      padding: 1.3em 3em;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      font-weight: 500;
+      color: #000;
+      background-color: #e5f2ef;
+      border: none;
+      border-radius: 40px;
+      box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease 0s;
+      cursor: pointer;
+      outline: none;
+      
+    }
+    
+    button:hover {
+      background-color: rgb(4, 7, 68);
+      box-shadow: 0px 15px 20px rgb(56, 56, 123,0.4);
+      color: #e5f2ef;
+      transform: translateY(-7px);
+    }
+    
+    button:active {
+      transform: translateY(-1px);
+    }
+  .form-field i{
+    position: absolute;
+      top: 50%;
+      right: 16px;
+      transform: translateY(-50%);
+      color: #999;
+      transition: 0.25s ease;
+  }
+  
+  

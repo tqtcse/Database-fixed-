@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <div>Save Tool To Database</div> 
+        <input type="text" id="specialist" list="CLINIC_LIST" placeholder="Choose a clinic">
+        <datalist id="CLINIC_LIST">
+            <option value="Ophthalmology">
+            <option value="Otorhinolaryngology">
+            <option value="Dermatology">
+            </option>
+        </datalist>
+        <div id="ToolInfor" style="display: none;">
+            <div>Tool Name
+               <div> <input type="text" id="ToolName" placeholder="Name"></div>
+            </div>
+            <div> ID Tool
+                <div><input type="text" id="ToolID" placeholder="Medical ID"></div>
+            <div>Quantity
+                <div><input type="number" id="quantity" placeholder="Quantity"></div>
+            </div>
+            <div>Place To Store
+                <div><input type="text" id="place" list="PlaceList" placeholder="Place To Store"></div>
+                <datalist id="PlaceList">
+                    <option value="H1">
+                    <option value="H2">
+                    <option value="H3">
+                    </option>
+                </datalist>
+            </div>
+            <div>
+                Maintenance History
+                <div><textarea id="Maintenance" placeholder="Maintenance History" rows="4" cols="50"></textarea></div>
+            </div>
+            <div> Price
+                <div><input type="text" id="Price" placeholder="Price"?></div>
+            </div>
+            <div>
+                Manufacturing Date
+                <div> <input type="date" id="MFD"></div>
+            </div>
+            <div>Expire Date
+                <div><input type="date" id="expire" placeholder="Expire"></div>
+            </div>
+            <button onclick="submitTool()">Update</button>
+           <div id="ButtonCanUse"> Tool List
+            <input type="text" id="FindTool" placeholder="Find Tool By ID">
+            <button onclick="findTool()">Tool List</button>
+           </div>
+           <div id="ToolDiv">
+
+           </div>
+
+            <div id="Button">ExpireList
+                <button onclick="findExpiredTool()">Expired List</button>
+            </div>
+            
+            <div id="ExpireDiv"> 
+               
+            </div>
+
+        </div>
+    </body>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+    <script src="../index1.js"></script>
+    <script>
+        document.getElementById("specialist").addEventListener('change', function(){
+            ToolInforDic = document.getElementById("ToolInfor")
+            ToolInforDic.style.display = 'block'
+        })
+        function findTool(){
+                Id = document.getElementById("FindTool").value
+                Clinic = document.getElementById("specialist").value
+
+                database.ref('Tool/' + Clinic).once('value',function(snapshot){
+                    snapshot.forEach((childSnapshot) => {
+                        
+                        childSnapshot.forEach((childSnapshot2) => {
+                            
+                            i = 0;
+                            console.log(childSnapshot.val())
+                            childSnapshot2.forEach((childSnapshot3) => {
+                               
+                            
+                                EXDate = childSnapshot3.val().ExpireDate
+
+                                const EX = new Date(EXDate);
+                                const currentDate = new Date()
+                                
+                                IdFromData = childSnapshot3.val().IdTool
+                                
+                                if ((currentDate < EX) && (Id === IdFromData)) {
+                                   
+                    ButtonDiv1 = document.getElementById('ButtonCanUse')
+                    ButtonDiv1.style.display = 'none'
+
+                    i = i + 1
+                   
+
+                    const newDiv = document.createElement('div')
+                    newDiv.id = 'ToolDiv' + i
+
+
+                    const MedInfoDiv1 = document.getElementById('ToolDiv' );
+                    
+
+                    MedInfoDiv1.style.display = 'block';
+
+                    const MedDiv1 = document.createElement('div');
+
+                    newDiv.innerHTML = `
+                            <p>Clinic: ${childSnapshot3.val().Clinic}</p>
+                            <p>Tool Name: ${childSnapshot3.val().ToolName}</p>
+                            <p>ID Tool: ${childSnapshot3.val().IdTool}</p>
+                            <p>ManufacturingDate: ${childSnapshot3.val().ManufacturingDate}</p>
+                            <p>Expire Date: ${childSnapshot3.val().ExpireDate}</p>
+                            <p>Place: ${childSnapshot3.val().Place}</p>
+                            <p>Quantity: ${childSnapshot3.val().Quantity}</p>
+                            <p>Price: ${childSnapshot3.val().Price}</p>
+                `;
+
+                    const hideButton1 = document.createElement('button');
+                    hideButton1.textContent = "HideAll";                   
+                    hideButton1.addEventListener('click', () => {
+                    ButtonDiv1.style.display = 'block';
+                    MedInfoDiv1.style.display = 'none';
+                    MedInfoDiv1.innerHTML = ''; 
+                });
+                    
+
+                    const nextButton = document.createElement('button');
+                    nextButton.textContent = "Hide"
+
+                    const deleteButton1 = document.createElement('button');
+                    deleteButton1.textContent = "Delete";
+                    deleteButton1.addEventListener('click', () => {
+                    
+                        childSnapshot3.ref.remove()
+                        ButtonDiv1.style.display = 'block';
+                        
+                        newDiv.innerHTML = ''
+                        deleteButton.style.display = 'none'
+                        nextButton.style.display = 'none'
+
+                });
+
+
+                    nextButton.addEventListener('click', () => {
+                        newDiv.innerHTML = ''
+                        ButtonDiv1.style.display = 'block';
+                        deleteButton1.style.display = 'none'
+                        hideButton1.style.display = 'none'
+                        nextButton.style.display = 'none'
+                        EditButton.style.display = 'none'
+                    })
+
+                    const EditButton = document.createElement('button');
+                    EditButton.textContent = "Edit"
+                    EditButton.addEventListener('click', () => {
+                        editTool(childSnapshot3.val().Clinic, childSnapshot3.val().ToolName, 
+                    childSnapshot3.val().IdTool, childSnapshot3.val().ManufacturingDate,
+                childSnapshot3.val().ExpireDate, childSnapshot3.val().Place, childSnapshot3.val().Quantity,
+            childSnapshot3.val().Price, childSnapshot3.val().Maintenance)
+                    })
+
+                
+                MedInfoDiv1.appendChild(newDiv);
+                MedInfoDiv1.appendChild(EditButton)
+                MedInfoDiv1.appendChild(deleteButton1);
+                MedInfoDiv1.appendChild(nextButton);
+                MedInfoDiv1.appendChild(hideButton1);
+
+                    } 
+                    
+                            })
+                            
+                        })
+                        
+                    })
+                })
+            }
+            function editTool(Clinic, ToolName, IdTool, MD, ED, Place, Quantity, Price, Maintain){
+
+                const newClinic = prompt("Enter Clinic", Clinic)
+                const newToolName = prompt("Enter ToolName", ToolName)
+                const newIdTool = prompt("Enter newIdTool ", IdTool)
+                const newMD = prompt("Enter MD", MD)
+                const newED = prompt("Enter ED", ED)
+                const newPlace = prompt("Enter Place", Place)
+                const newQuantity = prompt("Enter Quantity", Quantity)
+                const newPrice = prompt("Enter Price", Price)
+                const newMaintenance = prompt("Enter New Maintenance", Maintain)
+
+
+                
+               
+                    var data = {
+                    
+                    ToolName : newToolName,
+                    IdTool :  newIdTool,
+                    Quantity : newQuantity,
+                    ManufacturingDate : newMD,
+                    ExpireDate : newED,
+                    Place : newPlace,
+                    Clinic : newClinic,
+                    Price : newPrice,
+                    Maintenance : newMaintenance
+
+                }
+
+                database.ref('Tool/' + Clinic + '/' + Place + '/' + IdTool + '/' + ED).remove()
+                database.ref('Tool/' + newClinic + '/' + newPlace + '/' + newIdTool + '/' + newED).set(data)
+                
+            }
+
+
+
+            function findExpiredTool(){
+
+Clinic = document.getElementById("specialist").value
+database.ref('Tool/' + Clinic).once('value',function(snapshot){
+    i = 0
+    snapshot.forEach((childSnapshot) => {
+        
+        childSnapshot.forEach((childSnapshot2) => {
+          
+            childSnapshot2.forEach((childSnapshot3) => {
+               
+            
+                EXDate = childSnapshot3.val().ExpireDate
+
+                const EX = new Date(EXDate);
+                const currentDate = new Date()
+
+               
+                if (currentDate > EX) {
+                     i = i + 1
+                    // console.log(i)
+                    ButtonDiv = document.getElementById('Button')
+                    ButtonDiv.style.display = 'none'
+
+            const MedInfoDiv = document.getElementById('ExpireDiv');
+           // MedInfoDiv.innerHTML = ''; 
+
+                    const newDiv = document.createElement('div');
+                    newDiv.id = "ExpireDiv" + i
+
+
+       
+
+        newDiv.innerHTML = `
+            <p>Clinic: ${childSnapshot3.val().Clinic}</p>
+            <p>Tool Name: ${childSnapshot3.val().ToolName}</p>
+            <p>ID Tool: ${childSnapshot3.val().IdTool}</p>
+            <p>ManufacturingDate: ${childSnapshot3.val().ManufacturingDate}</p>
+            <p>Expire Date: ${childSnapshot3.val().ExpireDate}</p>
+            <p>Place: ${childSnapshot3.val().Place}</p>
+            <p>Quantity: ${childSnapshot3.val().Quantity}</p>
+            <p>Price: ${childSnapshot3.val().Price}</p>
+            <p>${childSnapshot3.val().Maintenance}</p>
+        `;
+
+    const hideButton = document.createElement('button');
+    hideButton.textContent = "Hide";  
+    
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = "Delete";
+
+    hideButton.addEventListener('click', () => {
+    ButtonDiv.style.display = 'block';
+    deleteButton.style.display = 'none'
+    hideButton.style.display = 'none'
+    newDiv.style.display = 'none';
+});
+    
+    
+    deleteButton.addEventListener('click', () => {
+    
+        childSnapshot3.ref.remove()
+
+        ButtonDiv.style.display = 'block';
+        newDiv.innerHTML = ''
+
+        hideButton.style.display = 'none'
+        deleteButton.style.display = 'none'
+
+});
+
+
+
+
+MedInfoDiv.appendChild(newDiv);
+MedInfoDiv.appendChild(deleteButton);
+MedInfoDiv.appendChild(hideButton);
+
+    }  
+            })
+        })
+    })
+})
+}
+
+
+function submitTool(){
+            
+            Clinic = document.getElementById("specialist").value
+            Name = document.getElementById("ToolName").value 
+            Id = document.getElementById("ToolID").value
+            Quantity = document.getElementById("quantity").value
+            MFDs = document.getElementById("MFD").value
+            Expire = document.getElementById("expire").value
+            Place = document.getElementById("place").value
+            Price = document.getElementById("Price").value
+            Matain =  document.getElementById("Maintenance").value
+
+          const ToolRef = firebase.database().ref('Tool')
+          ToolRef.once('value', (snapshot) => {
+              if(!snapshot.exists()){
+                  var data = {
+
+                      ToolName : Name,
+                      IdTool : Id,
+                      Quantity : Quantity,
+                      ManufacturingDate : MFDs,
+                      ExpireDate : Expire,
+                      Place : Place,
+                      Clinic : Clinic,
+                      Price : Pric,
+                      Maintenance : Matain,
+                      
+
+                  }
+                  console.log('create new Tool')
+                  firebase.database().ref('Tool/' + Clinic + '/' + Place + '/' + Id + '/' + Expire ).set(data)
+              } else {
+                 database.ref('Tool/' + Clinic + '/' + Place + '/' +  Id + '/' + Expire ).once('value',function(snapshot){
+                  if(!snapshot.exists()){
+                      data1 = 0;
+                      const data1Number = parseInt(data1)
+                      const quantityNumber = parseInt(Quantity)
+
+                      sum = data1Number + quantityNumber
+
+                      var data = {
+                      ToolName : Name,
+                      IdTool : Id,
+                      Quantity : sum,
+                      ManufacturingDate : MFDs,
+                      ExpireDate : Expire,
+                      Place : Place,
+                      Clinic : Clinic,
+                      Price : Price,
+                      Maintenance : Matain
+
+                  }
+                  console.log('Add success')
+                  firebase.database().ref('Tool/' + Clinic + '/' + Place + '/' +  Id + '/' + Expire ).set(data)
+                  } else {
+
+                      data1 = snapshot.val().Quantity
+                      console.log(data1)
+
+
+                      const data1Number = parseInt(data1)
+                      const quantityNumber = parseInt(Quantity)
+
+                      sum = data1Number + quantityNumber
+
+                      var data = {
+                      ToolName : Name,
+                      IdTool : Id,
+                      Quantity : sum,
+                      ManufacturingDate : MFDs,
+                      ExpireDate : Expire,
+                      Place : Place,
+                      Clinic : Clinic,
+                      Price : Price,
+                      Maintenance : Matain
+
+                  }
+                  console.log('Add success')
+                  firebase.database().ref('Tool/' + Clinic + '/' + Place + '/' +  Id + '/' + Expire ).set(data)
+                  }
+                 })
+
+              }
+          })
+
+          }
+
+
+    </script>
+</html>

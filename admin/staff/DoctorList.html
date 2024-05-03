@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>Login </title>
+</head>
+<body>
+    <div> Doctor List</div>
+    <input type="text" id="specialist" list="CLINIC_LIST" placeholder="Choose a clinic">
+    <datalist id="CLINIC_LIST">
+        <option value="Ophthalmology">
+        <option value="Otorhinolaryngology">
+        <option value="Dermatology">
+        </option>
+    </datalist>
+    <div id="ShowList" style="display: none;">
+        <div id="Button">
+            <button onclick="showDoctor()">Show Doctor List</button>
+        </div>
+    
+        <div id="showDiv"></div>
+        <div id="FindDoctor">
+            <input type="text" id="PhoneNumber" placeholder="Find By Phone Number">
+            <button onclick="findDoctor()">Find Doctor</button>
+            <div id="ShowList2"></div>
+        </div>
+        <div id="DetailDoctor" style="display: none;">
+            <div>
+                <img id="image" src="" alt="Image">
+            </div>
+            <div>
+                Doctor
+                <div><input type="text" id="Name" placeholder="Doctor Name"></div>
+            </div>
+            <div>
+                Gender
+                <div><input type="text" id="Gender" placeholder="Gender"></div>
+            </div>
+            <div>
+                Age 
+                <div><input type="text" id="Age" placeholder="Age"></div>
+            </div>
+            <div>
+                Phone Number
+                <div><input type="text" id="PhoneNumber2" placeholder="Phone Number"></div>
+            </div>
+            <div>
+                Email
+                <div><input type="text" id="Email" placeholder="Email"></div>
+            </div>
+            <div>
+                Address 
+                <div><input type="text" id="Address" placeholder="Address"></div>
+            </div>
+            <div>
+                Clinic
+                <div><input type="text" id="Clinic" placeholder="Clinic"></div>
+            </div>
+            <div>
+                <img id="degreeImage" src="" alt="Image">
+            </div>
+            <div>
+                <button onclick="Save()">Save</button>
+                <button onclick="Hide()">Hide</button>
+            </div>
+            
+               
+            
+
+        </div>
+    </div>
+</body>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+<script src="../../index1.js"></script>
+<script>
+            document.getElementById("specialist").addEventListener('change',function(){
+                MedicineInforDiv = document.getElementById("ShowList")
+                MedicineInforDiv.style.display = 'block'
+            })
+            function Hide(){
+                document.getElementById("DetailDoctor").style.display = 'none'
+            }
+
+
+            function Save(){
+                Name = document.getElementById('Name').value
+                Gender = document.getElementById('Gender').value 
+                Age = document.getElementById('Age').value
+                PhoneNumber = document.getElementById('PhoneNumber2').value
+                Email = document.getElementById('Email').value
+                Address = document.getElementById('Address').value
+                Clinic = document.getElementById('Clinic').value
+
+                var data = {
+                    Full_Name: Name,
+                    Gender: Gender,
+                    Age: Age,
+                    Phone_Number: PhoneNumber,
+                    Address: Address,
+                    Specialist: Clinic,
+                    Email: Email
+                    }
+
+                database.ref('doctorList/' + Clinic + '/' + PhoneNumber ).update(data)
+                .then(() => {
+                console.log("Thành công");
+            })
+                .catch((error) => {
+                console.error("Lỗi: ", error);
+            });
+                
+            }
+            async function findDoctor(){ 
+                
+                Clinic = document.getElementById("specialist").value 
+                PhoneNumber = document.getElementById('PhoneNumber').value
+
+                document.getElementById("DetailDoctor").style.display = 'block'
+                const pathss = `Avatar/Ophthalmology/Doctor/${PhoneNumber}`
+                const pathAsString = pathss.toString();
+                console.log(pathAsString)
+                try {
+                    const response = await fetch('../../api/image', {
+                        method: 'POST',
+                        headers:{   
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ pathAsString })
+                    })
+                    if(response.ok){
+                    const URL = await response.text();
+                    console.log(URL)
+                    const cleanUrl = URL.replace(/["\[\]]/g, '');
+                    console.log(cleanUrl);
+                    const imgElement = document.getElementById('image');
+                    imgElement.src = cleanUrl;
+
+                 } else {
+                    console.error('Yêu cầu không thành công. Mã lỗi:', response.status);
+                 }
+                } catch(error){
+                console.error('Lỗi khi gửi yêu cầu', error)
+                 }
+
+
+
+                const pathDegree = `Degree/Ophthalmology/Doctor/${PhoneNumber}`
+                const pathDegreeAsString = pathDegree.toString()
+                console.log(pathDegreeAsString)
+                
+                try {
+                    const responses = await fetch('../../api/imageDegree', {
+                        method: 'POST',
+                        headers:{   
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ pathDegreeAsString })
+                    })
+                    if(responses.ok){
+                    const URL = await responses.text();
+                    console.log(URL)
+                    const cleanUrl = URL.replace(/["\[\]]/g, '');
+                    console.log(cleanUrl);
+                    const imgElement = document.getElementById('degreeImage');
+                    imgElement.src = cleanUrl;
+
+                 } else {
+                    console.error('Yêu cầu không thành công. Mã lỗi:', responses.status);
+                 }
+                } catch(error){
+                console.error('Lỗi khi gửi yêu cầu', error)
+                 }
+                
+                
+
+
+                database.ref('doctorList/').once('value', function(snapshot){
+                    snapshot.forEach((childSnapshot) => {
+                        console.log(childSnapshot.val())
+                        childSnapshot.forEach((childSnapshot2) => {
+                        if(childSnapshot2.val().Phone_Number === PhoneNumber){
+                            document.getElementById('Name').value = childSnapshot2.val().Full_Name
+                            document.getElementById('Gender').value = childSnapshot2.val().Gender
+                            document.getElementById('Age').value = childSnapshot2.val().Age
+                            document.getElementById('PhoneNumber2').value = childSnapshot2.val().Phone_Number
+                            document.getElementById('Email').value = childSnapshot2.val().Email
+                            document.getElementById('Address').value = childSnapshot2.val().Address
+                            document.getElementById('Clinic').value = childSnapshot2.val().Specialist
+
+                        }
+                        })
+                    })
+                })
+            }
+            function showDoctor(){
+
+
+                Clinic = document.getElementById("specialist").value 
+                database.ref('doctorList/' + Clinic).once('value', function(snapshot){
+                    snapshot.forEach((childSnapshot) => {
+                        //console.log(childSnapshot.val())
+                        
+                        const ShowInfoDiv = document.getElementById('ShowList2')
+
+                        const ShowDiv = document.createElement('div')
+                        ShowDiv.innerHTML = '';
+                        
+
+                        ButtonDiv1 = document.getElementById('Button')
+                        ButtonDiv1.style.display = 'none'
+
+                        ShowDiv.style.display = 'block';
+
+                        ShowDiv.innerHTML = `
+                        <p>Clinic: ${childSnapshot.val().Specialist}</p>
+                            <p>Name: ${childSnapshot.val().Full_Name}</p>
+                            <p>Age: ${childSnapshot.val().Age}</p>
+                            <p>Address: ${childSnapshot.val().Address}</p>
+                            <p>Gender: ${childSnapshot.val().Gender}</p>
+                            <p>Phone Number: ${childSnapshot.val().Phone_Number}</p>
+                        
+                        `
+
+                        const hideButton1 = document.createElement('button');
+                        hideButton1.textContent = "Hide";                   
+                        hideButton1.addEventListener('click', () => {
+                        ButtonDiv1.style.display = 'block';
+                        ShowDiv.style.display = 'none';
+                        hideButton1.style.display = 'none'
+                        //showDoctor()
+                });
+                    
+
+
+                        ShowInfoDiv.appendChild(ShowDiv)
+                        ShowInfoDiv.appendChild(hideButton1)
+                    })
+                })
+            }
+</script>

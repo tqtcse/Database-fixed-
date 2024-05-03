@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    
+</head>
+
+<body>
+    <span id="weekNumberDisplay"></span>
+    <div><button onclick="getData()">Show All Data</button></div>
+    <input type="number" id="weekNumber" placeholder="Week Number">
+    <button onclick="ShowWeekData()">Show Week Data</button>
+    <div>
+        <canvas id="WeekProfitChart" width="300" height="300" style="display: none;"></canvas>
+        <div id="ProfitDiv"></div>
+        <canvas id="WeekCostChart" width="300" height="300" style="display: none;"></canvas>
+        <div id="CostDiv"></div>
+    </div>
+    <canvas id="myPieChart" width="300" height="300" style="display: none;"></canvas>
+    <div id="TotalDiv"></div>
+    <canvas id="myPieChartCost" width="300" height="300" style="display: none;"></canvas>
+    <div id="TotalCostDiv"></div>
+
+</body>
+
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="../index1.js"></script>
+
+<script>
+
+    function ShowWeekData(){
+        
+        let profitData = {}
+        let costData = {}
+
+        WeekNumber = document.getElementById('weekNumber').value 
+
+        database.ref('Revenue').once('value', function(snapshot){
+            
+            totalsumProfit = 0
+            totalsumCost = 0
+            
+            snapshot.forEach((childSnapshot) => {
+                sumProfit = 0
+            sumCost = 0
+               
+                database.ref('Revenue/' + childSnapshot.key + '/' + WeekNumber).once('value', function(snapshots){
+                    console.log(childSnapshot.key)
+                    snapshots.forEach((childSnapshots) => {
+                       
+                        //console.log(childSnapshots.val())
+                        if(childSnapshots.val().Profit != null){
+
+                            dataProfit = childSnapshots.val().Profit
+                            sumProfit = sumProfit + dataProfit
+                            totalsumProfit =  totalsumProfit + dataProfit
+                            
+                            profitData[childSnapshot.key] = dataProfit
+                            
+                            
+
+                        } else {
+
+                            dataCost = childSnapshots.val().Cost
+                            sumCost = sumCost + dataCost
+                            totalsumCost = totalsumCost + dataCost
+                            //console.log(sumCost)
+
+                            costData[childSnapshot.key] = dataCost
+                            
+                            //console.log(profitDatas['Ophthalmology'])
+                        }             
+
+                    })
+                   
+                    //console.log(costData[childSnapshot.key])              
+                    if(profitData['Ophthalmology'] != null && profitData['Dermatology'] != null && profitData['Otorhinolaryngology'] != null){
+                        console.log(totalsumCost)
+                        console.log(totalsumProfit)
+                        drawChart(profitData['Ophthalmology'],profitData['Otorhinolaryngology'],profitData['Dermatology'], totalsumProfit)
+                        drawChartCost(costData['Ophthalmology'],costData['Otorhinolaryngology'],costData['Dermatology'], totalsumCost)
+                    }
+                })
+                
+
+                
+
+            })
+
+        })
+
+    }
+
+
+    function getData(){
+
+        let profitData = {}
+        let costData = {}
+
+        database.ref('Revenue').once('value',function(snapshot){
+            totalsumProfit = 0
+            totalsumCost = 0
+
+            snapshot.forEach((childSnapshot) => {
+                sumProfit = 0
+                sumCost = 0
+                console.log(childSnapshot.key)
+               // console.log(childSnapshot.val())
+                childSnapshot.forEach((childSnapshot2) => {
+                    //console.log(childSnapshot2.val())
+                    childSnapshot2.forEach((childSnapshot3) => {
+                        dataProfit = childSnapshot3.val().Profit
+                        if(dataProfit !=  null){
+                            //console.log(childSnapshot3.val().Profit)
+                            sumProfit = sumProfit + dataProfit
+                            totalsumProfit =  totalsumProfit + dataProfit
+                        } else {
+                            dataCost = childSnapshot3.val().Cost
+                            sumCost = sumCost + dataCost
+                            totalsumCost = totalsumCost + dataCost
+                        }
+                        
+                    })
+                   
+                })
+                
+                costData[childSnapshot.key] = sumCost
+
+                profitData[childSnapshot.key] = sumProfit
+
+                console.log(costData[childSnapshot.key])
+                //console.log(totalsumProfit)
+                
+            })
+
+            drawChart(profitData['Ophthalmology'],profitData['Otorhinolaryngology'],profitData['Dermatology'], totalsumProfit)
+            drawChartCost(costData['Ophthalmology'],costData['Otorhinolaryngology'],costData['Dermatology'], totalsumCost)
+            
+            
+        })
+    }
+
+
+var myPieChartCost
+var myPieChart
+
+function drawChartCost(Ophthalmology, Otorhinolaryngology, Dermatology, Total) {
+    var ctx = document.getElementById('myPieChartCost').getContext('2d');
+
+    // Hủy bỏ thể hiện biểu đồ cũ nếu tồn tại
+    if (window.myPieChartCost) {
+        window.myPieChartCost.destroy();
+    }
+
+    // Tiếp tục với việc vẽ biểu đồ mới
+    document.getElementById("myPieChartCost").style.display = 'block';
+    document.getElementById("TotalCostDiv").innerText = "Total Medicine Cost: " + Total;
+
+    var data = {
+        labels: ['Ophthalmology', 'Otorhinolaryngology', 'Dermatology'],
+        datasets: [{
+            label: 'Cost',
+            data: [Ophthalmology, Otorhinolaryngology, Dermatology],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.5)',
+                'rgba(54, 162, 235, 0.5)',
+                'rgba(255, 206, 86, 0.5)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)'
+            ],
+            borderWidth: 1
+        }]
+    };
+
+    window.myPieChartCost = new Chart(ctx, {
+        type: 'pie',
+        data: data,
+        options: {
+            responsive: false,
+            maintainAspectRatio: false,
+            width: 10,
+            height: 10
+        }
+    });
+}
+
+
+
+function drawChart(Ophthalmology, Otorhinolaryngology, Dermatology, Total) {
+    // Lấy canvas
+    var ctx = document.getElementById('myPieChart').getContext('2d');
+    
+    // Kiểm tra nếu có biểu đồ cũ, hủy nó trước khi vẽ biểu đồ mới
+    if (window.myPieChart != null) {
+        window.myPieChart.destroy();
+    }
+
+    // Hiển thị phần tử chứa biểu đồ
+    document.getElementById("myPieChart").style.display = 'block';
+    document.getElementById("TotalDiv").innerText = "Total Profit : " + Total;
+
+    // Tạo dữ liệu cho biểu đồ (ví dụ)
+    var data = {
+        labels: ['Ophthalmology', 'Otorhinolaryngology', 'Dermatology'],
+        datasets: [{
+            label: 'Profit',
+            data: [Ophthalmology, Otorhinolaryngology, Dermatology],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.5)',
+                'rgba(54, 162, 235, 0.5)',
+                'rgba(255, 206, 86, 0.5)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)'
+            ],
+            borderWidth: 1
+        }]
+    };
+
+    // Tạo và cấu hình biểu đồ tròn
+    window.myPieChart = new Chart(ctx, {
+        type: 'pie',
+        data: data,
+        options: {
+            responsive: false, // Không tự động điều chỉnh kích thước
+            maintainAspectRatio: false, // Không giữ tỷ lệ khung hình
+            width: 10, // Độ rộng của biểu đồ
+            height: 10 // Độ cao của biểu đồ
+        }
+    });
+}
+
+
+</script>
+</html>

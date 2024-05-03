@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>Login </title>
+    <link rel="stylesheet" href="doctorcss.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <div id="test1">
+        <h2 id="form">Your Information</h2>
+    </div>
+        <div id="infor1">
+            <div id="ava">
+                <div id="avatop">
+                    <div class="header2" >Your Avatar</div>
+                    <input type="file" id="avatar" accept="image/*">
+                    <div>
+                        <img id="AvatarDisplay" src="#" alt="Selected Image" style="display:none; max-width: 100%; max-height: 200px;">
+                        
+                    </div>
+                </div>
+
+                <div id="avabelow">
+                    <div class="header2 below"  >Upload your degree</div>
+                    <input type="file" id="degree" accept="image/*">
+                        <div>
+                            <img id="imageDisplay" src="#" alt="Selected Image" style="display:none; max-width: 100%; max-height: 200px;">
+                        </div>
+                </div>
+                
+                
+               
+            </div>
+           <div id="detail">
+                <div class="header2">Detail</div>
+                <div class="form-field">
+                    <i class='bx bxs-user'></i>
+                    <input type="text" class="form-input" placeholder=" " id="full_name" >
+                    <label for="name" class="form-label">Full Name</label>
+                    
+                </div>   
+                <!-- <input type="text" id="full_name" placeholder="Full name"> -->
+                <div class="form-field">
+                    <i class='bx bx-male-female'></i>
+                    <input type="text" class="form-input" placeholder=" " id="gender" >
+                    <label for="name" class="form-label">Gender</label>
+                </div>   
+                <!-- <input type="text" id="gender" placeholder="Gender"> -->
+                <div class="form-field">
+                    <i class='bx bx-message-square'></i>
+                    <input type="text" class="form-input" placeholder=" " id="age" >
+                    <label for="name" class="form-label">Age</label>
+                </div>   
+                <!-- <input type="text" id="age" placeholder="Age"> -->
+                <div class="form-field">
+                    <i class='bx bxs-phone'></i>
+                    <input type="text" class="form-input" placeholder=" " id="number" >
+                    <label for="name" class="form-label">Phone Number</label>
+                </div>   
+                <!-- <input type="text" id="number" placeholder="Phone Number"> -->
+                <div class="form-field">
+                    <i class='bx bxs-envelope' ></i>
+                    <input type="text" class="form-input" placeholder=" " id="email" >
+                    <label for="name" class="form-label">Email</label>
+                </div>   
+                <!-- <input type="text" id="email" placeholder="Email"> -->
+                <div class="form-field">
+                    <i class='bx bxs-home'></i>
+                    <input type="text" class="form-input" placeholder=" " id="address" >
+                    <label for="name" class="form-label">Address</label>
+                </div>   
+                <!-- <input type="text" id="address" placeholder="Address"> -->
+                    
+                <div class="form-field">
+                    <i class='bx bx-briefcase'></i>
+                    <input type="text" class="form-input" placeholder=" " id="specialist" list="CLINIC_LIST">
+                    <label for="name" class="form-label">Choose a clinic</label>
+                </div>
+                <!-- <input type="text" id="specialist" list="CLINIC_LIST" placeholder="Choose a clinic"> -->
+                        <datalist id="CLINIC_LIST">
+                            <option value="Ophthalmology">
+                            <option value="Otorhinolaryngology">
+                            <option value="Dermatology">
+                            </option>
+                        </datalist>             
+           </div>  
+        </div>
+    </div>
+    
+    <div id="button_cointer">
+        <button onclick="SubmitInformation()">Submit</button>
+    </div>
+
+
+</body>
+
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"></script>
+
+<script src="../index1.js"></script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded',function(){
+        checkSubmit()
+    })
+    document.getElementById('degree').addEventListener('change', function(event){
+        const selectedFile = event.target.files[0]
+        const fullName = document.getElementById('full_name').value
+        const specialist = document.getElementById('specialist').value
+        if(fullName && specialist && selectedFile){
+            if(selectedFile){
+            const imageRef = firebase.storage().ref().child('Degree/' + specialist + '/' + fullName)
+            const uploadTask = imageRef.put(selectedFile)
+
+            uploadTask.then((snapshot) => {
+                console.log('upload Photo succesfully')
+                return snapshot.ref.getDownloadURL()
+            }).then((downloadURL) => {
+                localStorage.setItem('URLimgage',downloadURL)
+                const imageDisplay = document.getElementById('imageDisplay')
+                imageDisplay.src = downloadURL;
+                imageDisplay.style.display = 'block'
+            }).catch((error) => {
+            console.error('Loi', error)})
+        }
+        }else{
+            return
+        }
+        
+    })
+    document.getElementById('avatar').addEventListener('change', function(event){
+        const selectedFile = event.target.files[0]
+        const fullName = document.getElementById('full_name').value
+        const specialist = document.getElementById('specialist').value
+        if(fullName && specialist && selectedFile){
+            if(selectedFile){
+            const imageRef = firebase.storage().ref().child('Avatar/' + specialist + '/' + fullName)
+            const uploadTask = imageRef.put(selectedFile)
+
+            uploadTask.then((snapshot) => {
+                console.log('upload Avatar succesfully')
+                return snapshot.ref.getDownloadURL()
+            }).then((downloadURL) => {
+                localStorage.setItem('AvatarImgage',downloadURL)
+                const imageDisplay = document.getElementById('AvatarDisplay')
+                imageDisplay.src = downloadURL;
+                imageDisplay.style.display = 'block'
+            }).catch((error) => {
+            console.error('Loi', error)})
+        }
+        }else{
+            return
+        }
+        
+    })
+    
+
+function SubmitInformation(){
+    
+  fullName = document.getElementById('full_name').value
+  gender = document.getElementById('gender').value
+  age = document.getElementById('age').value
+  phoneNumber = document.getElementById('number').value
+  address = document.getElementById('address').value
+  specialist = document.getElementById('specialist').value 
+  degree = document.getElementById('degree').value
+  avatar = document.getElementById('avatar').value
+  userID = firebase.auth().currentUser.uid
+  email = document.getElementById("email").value
+  var data = {
+      Full_Name: fullName,
+      Gender: gender,
+      Age: age,
+      Phone_Number: phoneNumber,
+      Address: address,
+      ID: userID,
+      Specialist: specialist,
+      Email: email
+  }
+  firebase.database().ref('doctorList/' + specialist + '/'+ phoneNumber).update(data)
+  .then(()=>{
+      console.log('Submit successfully')
+      
+  }
+
+  )
+ 
+}
+function checkSubmit(){
+    userID = localStorage.getItem('userID')
+    console.log(userID)
+    const doctorRef = firebase.database().ref('doctorList')
+    doctorRef.once('value', (snapshot) => {
+        
+        snapshot.forEach((clinicSnapshot) => {
+            clinicSnapshot.forEach((childSnapshot) => {
+                
+                if(childSnapshot.val().Phone_Number === userID){
+                    const userData = childSnapshot.val(); // Dữ liệu của người dùng từ cơ sở dữ liệu
+
+// Hiển thị thông tin của người dùng trên thanh nhập
+            document.getElementById('full_name').value = userData.Full_Name
+            document.getElementById('gender').value = userData.Gender
+            document.getElementById('age').value = userData.Age
+            document.getElementById('number').value = userData.Phone_Number
+            document.getElementById('address').value = userData.Address
+            document.getElementById('specialist').value = userData.Specialist
+            document.getElementById("email").value = userData.Email
+            downloadURL = localStorage.getItem('URLimgage')
+                const imageDisplay = document.getElementById('imageDisplay')
+                imageDisplay.src = downloadURL;
+                imageDisplay.style.display = 'block'
+            downloadURL2 = localStorage.getItem('AvatarImgage')
+                const imageDisplay2 = document.getElementById('AvatarDisplay')
+                imageDisplay2.src = downloadURL2;
+                imageDisplay2.style.display = 'block'
+                }
+            })
+        })
+    })
+
+    
+}
+function logout(){
+    firebase.auth().signOut().then(function(){
+        console.log("User signed out")
+    }).catch(function(error){
+        console.error("Error signing out", error)
+})
+}
+
+</script>
+
+</html>

@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+        <title>storein4 </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="Patientlist.css">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="./assets/img/">
+</head>
+<body>
+    <div id="Header">  
+        <div class="row">
+            <div class="col-lg-2 col-6">
+                <div class="Logo">
+                    <h1>
+                        <a title="BOOKNMEET India" alt="BOOKNMEET India" href="https://www.booknmeet.com/" >BOOKNMEET</a>
+                    </h1>
+                </div>
+            </div>
+            <div class="col-lg-10 col-6">
+                <div class="main-menu">
+                    <ul class="nav">
+                        <li>
+                          <a href="doctorFunctions.html">
+                              Home
+                              <small>Main<small>
+                          </a>                  
+                        </li>
+                        <li>
+                            <a href="AppointmentWithPatient.html">
+                                My Appoinments
+                                <small>Let Us Collaborate<small>
+                            </a>
+                            
+                        </li>
+                        <li>
+                            <a href="doctorDetail.html">
+                                My Information
+                                <small>Pandora Box</small>
+                            </a>
+                            
+                        </li>
+                        <li>
+                            <a href="PatientList.html">
+                                Patient List
+                                <small>List</small>
+                            </a>
+                            
+                        </li>
+                        <li>
+                            <a href="home.html">
+                                <i class="fa-solid fa-user-minus"></i>
+                            </a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    
+        <div class="Header-line"></div>
+      </div>
+      
+    <div id="bg">
+        <div id="all" >
+            <div id="ADD">
+                    <div> <h2>Add New Patient</h2></div>
+                <!-- <input type="text" id="PATIENT_NAME" placeholder="Patient Name"> -->
+                <div class="form-field">
+                    <i class='bx bx-user'></i>
+                    <input type="text" class="form-input" placeholder=" " id="PATIENT_NAME" >
+                    <label for="name" class="form-label">Patient Name</label>
+                </div>  
+                <!-- <input type="text" id="PHONE_NUMBER" placeholder="Phone Number"> -->
+                <div class="form-field">
+                    <i class='bx bx-phone'></i>
+                    <input type="text" class="form-input" placeholder=" " id="PHONE_NUMBER"  >
+                    <label for="name" class="form-label">Phone Number</label>
+                </div> 
+                  <!-- <input type="text" id="CLINIC" list="CLINIC_LIST" placeholder="Choose a clinic"> -->
+                <div class="form-field">
+                    <i class='bx bx-briefcase-alt'></i>
+                    <input type="text" class="form-input" placeholder=" " id="CLINIC" list="CLINIC_LIST" >
+                    <label for="name" class="form-label">Choose a clinic</label>
+                </div> 
+                <datalist id="CLINIC_LIST">
+                    <option value="Ophthalmology">
+                    <option value="Otorhinolaryngology">
+                    <option value="Dermatology">
+                    </option>
+                </datalist>
+                <!-- <input type="text" id="HealthInsuranceNumber" placeholder="HI Number"> -->
+                <div class="form-field">
+                    <i class='bx bx-health'></i>
+                    <input type="text" class="form-input" placeholder=" " id="HealthInsuranceNumber"  >
+                    <label for="name" class="form-label">HI Number</label>
+                </div> 
+                
+                <div> <textarea id="HISTORY" placeholder="Medical Sistory" rows="4" cols="50"></textarea></div>
+                <div> <textarea id="DETAILS" placeholder="Status Of Patient" rows="4" cols="50"></textarea></div>
+                <div> <textarea id="RESULT" placeholder="Test Result" rows="4" cols="50"></textarea></div>
+                <div><h3>Re-Examination Time</h3></div>
+                <input type="date" id="RE-EXAMINATION" placeholder="Re-Examination Time">
+                <!-- <input type="text" id="LOCATION" list="location_list" placeholder="Location"> -->
+                <div class="form-field">
+                    <i class='bx bx-location-plus'></i>
+                    <input type="text" class="form-input" placeholder=" " id="LOCATION" list="location_list" >
+                    <label for="name" class="form-label">Location</label>
+                </div> 
+                <datalist id="location_list">
+                    <option value="H1">
+                    <option value="H2">
+                    <option value="H3">
+                    </option>
+                </datalist>
+                <!-- <input type="text" id="TIME" list="time_list" placeholder="Time">-->
+                 <div class="form-field">
+                    <i class='bx bxs-time'></i>
+                    <input type="text" class="form-input" placeholder=" " id="TIME" list="time_list" >
+                    <label for="name" class="form-label">Time</label>
+                </div> 
+                <datalist id="time_list">
+                    <option value="8AM-10AM">
+                    <option value="1PM-3PM">
+                    <option value="3PM-5PM">
+                    </option>
+                </datalist>
+                <div><button onclick="addPatient()">addPatient</button></div>
+            </div>
+           
+            
+            <div id="find">
+                <h2>Find Patient In The PatientList</h2>
+                
+                  <!-- <input type="text" id="searchInput" placeholder="Find By Phone Number"> -->
+                  <div class="form-field">
+                    <i class='bx bx-phone'></i>
+                    <input type="text" class="form-input" placeholder=" " id="searchInput" >
+                    <label for="name" class="form-label"> Phone Number</label>
+                </div> 
+    
+                <!-- <input type="text" id="CLINIC2" list="CLINIC_LIST" placeholder="Choose a clinic"> -->
+                <div class="form-field">
+                    <i class='bx bx-briefcase-alt'></i>
+                    <input type="text" class="form-input" placeholder=" " id="CLINIC2" list="CLINIC_LIST" >
+                    <label for="name" class="form-label">Choose a clinic</label>
+                    </div> 
+                <datalist id="CLINIC_LIST">
+                    <option value="Ophthalmology">
+                    <option value="Otorhinolaryngology">
+                    <option value="Dermatology">
+                    </option>
+                </datalist>
+                    <button onclick="searchPatient()">FindPatient</button>
+                    <div id="patientInfo"></div>
+                  
+            </div>
+        </div>
+    
+    </div>
+   
+    <div id="bg2">
+        <div id = "all2">
+            <div id="Medicine">
+            <h3>Medicine</h3> 
+            <div>
+                <!-- <input type="text" id="CLINIC3" list="CLINIC_LIST" placeholder="Choose a clinic"> -->
+                <div class="form-field">
+                    <i class='bx bx-briefcase-alt'></i>
+                    <input type="text" class="form-input" placeholder=" " id="CLINIC3" list="CLINIC_LIST" >
+                    <label for="name" class="form-label">Choose a clinic</label>
+                    </div> 
+                </div>
+            <datalist id="CLINIC_LIST3">
+                <option value="Ophthalmology">
+                <option value="Otorhinolaryngology">
+                <option value="Dermatology">
+                </option>
+            </datalist>
+            <div id = "MEDICINE">
+            <div id="MedicineStore" style="display: none;">
+                <div id="STOREPLACE"> 
+                    <h3>Place</h3>
+                    <!-- <input type="text" id="StorePlace" list="StoreList" placeholder="Choose Place"> -->
+                    <div class="form-field">
+                        <i class='bx bx-location-plus' ></i>
+                        <input type="text" class="form-input" placeholder=" " id="StorePlace" list="StoreList" >
+                        <label for="name" class="form-label">Choose Place</label>
+                        </div> 
+                    </div>
+                    <datalist id="StoreList">
+                        <option value="B1">
+                        <option value="B2">
+                        <option value="B3">
+                        </option>
+                    
+                </div>
+                <div id="HiDiv">
+                    <h3>Health Insurance</h3>
+                    <div>
+                        <!-- <input type="text" id="HIOptions" list="YES/NO" placeholder="Yes/No"> -->
+                        <div class="form-field">
+                            <i class='bx bx-message-check'></i>
+                            <input type="text" class="form-input" placeholder=" " id="HIOptions" list="YES/NO" >
+                            <label for="name" class="form-label">Yes/No</label>
+                            </div> 
+                        </div>
+                        <datalist id="YES/NO">
+                            <option value="Yes">
+                                <option value="No">
+                                </option>
+                        </datalist>
+                    
+                    </div>
+            
+                </div>
+                
+                
+            </div>
+            
+            <div id="MedicineList">
+                    
+            </div>
+            <div id="Calculate" style="display: none;">
+                    <button onclick="Calculate()">Calculate Bill</button>
+                    <!-- <input type="text" id="Result" placeholder="Bill" style="display: none;"> -->
+                    <div class="form-field">
+                        <i class='bx bx-money-withdraw'></i>
+                        <input type="text" class="form-input" placeholder=" " id="Result" >
+                        <label for="name" class="form-label"> Bill</label>
+                    </div> 
+                    <button onclick="HideMedicine()" id="HideMedicineButton" style="display: none;">Hide Medicine</button>
+            </div>
+    
+            <div id="Bill">
+                <div><h3>Bill For Patient</h3></div>
+                
+                <div class="form-field">
+                            <i class='bx bx-id-card'></i>
+                            <input type="text" class="form-input" placeholder=" " id="IdBill" >
+                            <label for="name" class="form-label"> Id Bill</label>
+                        </div> 
+                
+                <div class="form-field">
+                    <i class='bx bx-money-withdraw'></i>
+                    <input type="text" class="form-input" placeholder=" " id="Price" >
+                    <label for="name" class="form-label"> Price</label>
+                </div> 
+
+                <div class="form-field">
+                    <i class='bx bx-phone'></i>
+                    <input type="text" class="form-input" placeholder=" " id="PhoneBill" >
+                    <label for="name" class="form-label"> Phone Number</label>
+                </div> 
+               
+                <div class="form-field">
+                    <i class='bx bx-money-withdraw'></i>
+                    <input type="text" class="form-input" placeholder=" " id="Date" >
+                    <label for="name" class="form-label"> Date</label>
+                </div> 
+                <div> <textarea id="detailBill" placeholder="Detail Bill" rows="4" cols="50"></textarea></div>
+                
+                <button onclick="BillSubmit()">Submit</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="app_section">
+        <div class="container">
+            <div class="row add_top_60 justify-content-around text-right">
+                <div class="col-md-6" id="homepagesection">
+                    <small>Virtual Clinic Solution</small>
+                    <h3>e-CONSULT, e-PRESCRIPTION, e-PAYMENT <strong>HASSLE FREE</strong>!</h3>
+                    <br>
+                    <p class="lead">
+                        Video feature enable continued access and care to those can't do physical consultation at your clinic or hospital. consult patients remotely through video consultation with online appointment and do real-time visual & audio patient assessment. Seamless integration with Appointment Scheduling, Prescription, Pathology Lab test.
+                        <br>
+                        <br>
+                        <a href="https://www.booknmeet.com/register" class="btn btn-sm btn-primary"> REGISTER </a>
+                        &nbsp&nbsp
+                        <a target="_new" href="https://www.booknmeet.com/demo" class="btn btn-sm btn-primary"> REQUEST DEMO</a>
+                    </p>
+                </div>
+                <div class="col-md-5">
+                    <a href="https://www.booknmeet.com/videoconsultation"><img src="https://www.booknmeet.com/img/E-Consultation-BOOKNMEET-03.svg" class="img-fluid-home" alt="VIDEO CONSULTATION MODULE, INTEGRATED WITH ONLINE APPOINTMENT"></a>
+                </div>
+            </div>
+            <br>
+            <div class="row justify-content-around">
+                <div class="col-md-5">
+        <a href="https://www.youtube.com/watch?v=dCg89Yiu-9A" target="_new"><img src="https://www.booknmeet.com/img/bnm/BOOKNMEET-INDIA-YOUTUBE-01.svg" class="img-fluid-home" alt="ONLINE APPOINTMENT, TOKEN, INTELLIGENT QUEUE MANAGEMENT"></a>
+                </div>
+                <div class="col-md-6" id="homepagesection">
+                    <small>For Consultants</small>
+                    <h3>SHARE YOUR BOOKNMEET PROFILE AND <strong>BE VISIBLE</strong>!</h3><br>
+                    <p class="lead">Share a unique URL that allows others to request confirmed online appointment with you based on availability and consultation location. Make it super easy for patients to connect with your real-time calendar. Improve patient service. Gain an instant professional edge and BE VISIBLE. We value your time.
+                    <br><br><a href="https://www.booknmeet.com/register" class="btn btn-sm btn-primary">REGISTER WITH US</a>
+                    </p>
+                </div>
+            </div>
+            <br>
+            <div class="row add_top_60 justify-content-around text-right">		
+                <div class="col-md-6" id="homepagesection">
+                        <small>For Clinics/Hospitals</small>
+                        <h3>INTELLIGENT QUEUE MANAGEMENT WITH <strong>TOKEN</strong> !</h3><br>
+                        <p class="lead">Presenting most effective solution for Queue and Token Management. QSTAT is a QMM for BOOKNMEET, Queue Management Module enables clinical facility to efficiently organize staff, resources and patient queues so that patients receive the right care at the right time in a comfortable, hassle-free environment.
+                            <br><br>
+                        <a href="https://www.booknmeet.com/register" class="btn btn-sm btn-primary">REGISTER</a>
+                        &nbsp;&nbsp;
+                        <a target="_new" href="https://qstat.co" class="btn btn-sm btn-primary">QSTAT MODULES</a></p>    
+                    </div>
+                    <div class="col-md-5">
+                        <a href="https://www.youtube.com/watch?v=UIw1-lt9NO4" target="_new"><img src="https://www.booknmeet.com/img/bnm/QSTAT-CO-YOUTUBE-02.svg" class="img-fluid-home" alt="QMS, TOKEN WITH SMS, INTEGRATED WITH ONLINE APPOINTMENT"></a>
+                    </div>
+    
+                </div>
+        </div>
+    </div>
+    <footer>
+              <div class="container margin_60_35">
+          <div class="row">
+            <div class="col-lg-4 col-md-12">
+                <p>
+                    <a href="https://www.booknmeet.com/" title="BOOKNMEET ONLINE APPOINTMENT PLATFORM">
+                        <img src="https://www.booknmeet.com/img/bnm/BOOKNMEET.svg" alt="BOOKNMEET INDIA'S BEST ONLINE APPOINTMENT SCHEDULING PLATFORM" width="165" height="30" class="img-fluid">
+                    </a>
+                </p>
+                <h5>Online Appointment Scheduling Platform</h5>
+                <ul class="contacts">
+                    <li><a href="https://g.page/booknmeet" target="_new"><i class="fa fa-map-marker"></i>Nasscom Startup Warehouse, Infopark Campus, Kakkanad, Kerala, India</a></li>
+                    <li><a href="tel://+91 9496 947 548"><i class="fa fa-mobile-phone"></i>+91 9496 947 548</a></li>
+                    <li><a href="mailto:post@booknmeet.com"><i class="fa fa-envelope"></i>post@booknmeet.com</a></li>
+                </ul>
+                <div class="follow_us">
+                    <h5>Follow us</h5>
+                    <ul>
+                        <li><a href="https://www.facebook.com/booknmeet" target="_new"><i class="fab fa-facebook"></i></a></li>
+                        <li><a href="https://twitter.com/booknmeet" target="_new"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="https://in.linkedin.com/in/booknmeet" target="_new"><i class="fab fa-linkedin"></i></a></li>
+                        <li><a href="https://www.instagram.com/booknmeet/" target="_new"><i class="fab fa-instagram"></i></a></li>
+                        <li><a href="https://api.whatsapp.com/send?phone=919496947548&amp;text=BOOKNMEET%20-%20Confirmed%20Online%20Appointment" target="_new"><i class="fab fa-whatsapp"></i></a></li>
+                        <li><a href="https://youtube.com/@booknmeet" target="_new"><i class="fab fa-youtube" target="_new"></i></a></li>
+                        <li><a href="https://play.google.com/store/apps/dev?id=4852298828600166862" target="_new"><i class="fab fa-android" target="_new"></i></a></li>
+                    </ul>
+                </div><br>
+                <p>
+                    <a href="https://play.google.com/store/apps/details?id=com.booknmeet.app" target="_new" title="BOOKNMEET mobile app now available on Google playstore">
+                        <img src="https://www.booknmeet.com/img/bnm/google-play-badge-bnm-vc-01.svg" width="120" height="36" alt="BOOKNMEET mobile app now available on Google playstore" class="img-fluid">
+                    </a>
+                </p>
+                
+            </div>
+            <div class="col-lg-3 col-md-4">
+            
+                <ul class="links">
+                <li><a href="/clinicalprocedures">Clinical Procedure Scheduling</a></li>
+                <li><a href="/vaccination">Vaccination</a></li>
+                <li><a href="/nutritionpractice">Nutrition Practice</a></li>
+                <li><a href="/compareplans">Compare Plans</a></li>
+                    <li><a href="/terms">Terms of Use</a></li>
+                    <li><a href="/privacy">Privacy Policy</a></li>
+                    <li><a href="/personalinformationpolicy">Personal Information Policy</a></li>
+                    <li><a href="/videoconsultationpolicy">Video Consultation Policy</a></li>
+                    <li><a href="/trademarknotice">Trade Mark Notice</a></li>
+                    <li><a href="/faq">FAQ</a></li>
+                    
+                    <li><a href="/limitedoffer">Special Offer</a></li>
+                </ul>
+                <p>Subscribe to BOOKNMEET Newsletter to get Important News, Amazing Offers &amp; Inside Scoops:</p>
+                  <form method="post" action="" class="rd-mailform subscribe" id="subscription_mail" data-parsley-validate="" novalidate="">
+                      <input type="hidden" name="form-type" value="subscribe">
+                      <input id="email_id" name="email_id" data-parsley-trigger="change" required="" type="email" class="form-control" placeholder="Email">
+                      <br>
+                      <input type="submit" class="btn_1" value="Submit"><div class="mfInfo"></div>												 
+                  </form>
+            </div>
+                
+            <div class="col-lg-5 col-md-5" id="homepagesection">
+                <a class="btn btn-sm btn-primary" href="https://www.booknmeet.com/demo">Request BOOKNMEET Demo</a>
+                <a class="btn btn-sm btn-primary" href="https://www.booknmeet.com/career">Career@BOOKNMEET</a>
+                <a class="btn btn-sm btn-primary" href="https://www.booknmeet.com/webstories/bnm-amp-stories.html">WEBSTORIES</a>
+                <h5 style="margin-top: 20px;">Your guaranteed Mobile Online Appointment</h5>
+                <p>With BOOKNMEET productivity tool, be successful in avoiding unscheduled absences. let our tool support you to be a leader in your medical practice. The best online appointment scheduling Platform enhances your practice management with online profile visibility.</p>
+                
+            </div>
+            
+          </div>
+          <br><br>
+          <!--/row-->
+          <div class="row">
+            <div class="col-md-12">
+                              </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-12">
+            
+                <p>
+                    <a target="_blank" href="http://www.newindianexpress.com/cities/kochi/2017/feb/08/book-n-meet-a-doctor-1568476.html"><img style="width:168px;height:21px;margin-right:25px;" alt="Booknmeet startup based in Kochi featured by National media,The New IndianExpress-Startupedia" class="img-fluid" src="https://www.booknmeet.com/img/theNewIndianExpress-booknmeet-2020.png"></a>
+                    
+                    <a target="_blank" href="http://epaperbeta.timesofindia.com/Article.aspx?eid=31811&amp;articlexml=Startups-wake-up-to-new-avenues-30072017002046"><img style="width: 165px;height:21px;margin-right:25px" alt="Booknmeet startup based in Kochi featured by National media,The Times of India-TOI-Startup feature by local correspondant" class="img-fluid" src="https://www.booknmeet.com/img/theTimesofIndia-booknmeet-2020.png"></a>
+                    
+                    <a target="_blank" href="https://www.vanitha.in/justin/book-in-meet-prashanthi-nadhan-article-vanitha.html"><img style="width: 127px;height:36px;" alt="Booknmeet startup based in Kochi featured by National media,Vanitha-Startup feature by local correspondant" class="img-fluid" src="https://www.booknmeet.com/img/Vanitha-Manorama-booknmeet-2020.png"></a>
+                
+                </p>
+            
+            </div>
+    
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-md-8">
+                <ul id="additional_links">
+                    <li><a href="https://qstat.co" target="_new" title="BOOKNMEET QMS WITH TOKEN">QSTAT</a></li>
+                    <li><a href=" http://startups.startupmission.in/c/460" class="text-transform-none" target="_blank" title="Kerala Startup Mission Certified Startup">KSUM</a></li>
+                    <li><a href="https://www.startupindia.gov.in/content/sih/en/profile.Startup.59807990e4b0bed982a4ed5c.html" class="text-transform-none" target="_blank" title="Govt. of India Certified Startup">STARTUPINDIA</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <div id="copy">Copyright © 2024 All Rights Reserved by <a href="https://www.booknmeet.com/">BOOKNMEET®</a></div>
+            </div>
+          </div>
+          </div>
+    </footer>
+      
+</div
+
+      
+        
+        
+      
+
+  
+
+</body>
+  
+   <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+   <script src="../index1.js"></script>
+<script>
+    var currentDate = new Date();
+    var weekNumber = getWeekNumber(currentDate);
+    //Bill
+
+    document.getElementById("CLINIC3").addEventListener('change',function(){
+        
+        document.getElementById('HiDiv').style.display = 'block'
+        document.getElementById('MedicineStore').style.display = 'block'
+        document.getElementById('HideMedicineButton').style.display = 'block'
+        document.getElementById('STOREPLACE').style.display = 'block'
+        
+      //  document.getElementById('MEDICINE').style.display = 'block'
+        
+    })
+    document.getElementById('Calculate').addEventListener('click', function(){
+
+        document.getElementById('Result').style.display = 'block'
+    })
+    document.getElementById("StorePlace").addEventListener('change', function(){
+
+
+        document.getElementById('Calculate').style.display = 'block'
+
+        Clinic = document.getElementById("CLINIC3").value
+        Place = document.getElementById("StorePlace").value
+        database.ref('Medicine/' + Clinic + '/' + Place ).once('value', function(snapshot){
+            snapshot.forEach((childSnapshot) => {
+                childSnapshot.forEach((childSnapshot2) => {
+            var idMedicine = childSnapshot2.val().IdMedicine;
+            var expire = childSnapshot2.val().ExpireDate;
+            var quantity = childSnapshot2.val().Quantity;
+            var price = childSnapshot2.val().Price;
+
+            // Tạo một phần tử input mới
+            var input = document.createElement("input");
+            input.type = "number";
+            input.id = idMedicine + expire;
+
+            // Tạo một phần tử paragraph chứa dòng chữ
+            var text = document.createElement("p");
+            text.textContent = idMedicine + ' | ' + expire + ' | ' + ' Quantity: ' + quantity + ' | ' + ' Price: ' + price + ' | ';
+
+            // Tạo một phần tử div chứa cả dòng chữ và thanh nhập
+            var container = document.createElement("div");
+            container.style.display = "flex"; // Đảm bảo các phần tử hiển thị trên cùng một hàng
+            container.style.alignItems = "center"; // Căn giữa các phần tử theo chiều dọc
+
+
+            container.appendChild(text);
+            container.appendChild(input);
+
+            // Lấy đối tượng div có id là MedicineList
+            var medicineList = document.getElementById("MedicineList");
+
+            // Thêm container vào MedicineList
+            medicineList.appendChild(container);
+                })
+            })
+        })
+    })
+
+    function HideMedicine(){
+        document.getElementById("HIOptions").value = ''
+        document.getElementById("HiDiv").style.display = 'none'
+        document.getElementById("MedicineList").innerHTML = ''
+        document.getElementById('HideMedicineButton').style.display = 'none'
+        document.getElementById('STOREPLACE').style.display = 'none'
+        document.getElementById('StorePlace').value = ''
+        document.getElementById("CLINIC3").value = ''
+        document.getElementById("Result").value = ''
+        document.getElementById("Calculate").style.display = 'none'
+    }
+
+    function Calculate(){
+
+        Options = document.getElementById("HIOptions").value
+        Clinic = document.getElementById("CLINIC3").value
+        Place = document.getElementById("StorePlace").value
+
+        var sum = 0;
+
+        database.ref('Medicine/' + Clinic + '/' + Place ).once('value', function(snapshot){
+            snapshot.forEach((childSnapshot) => {   
+            childSnapshot.forEach((childSnapshot2) => {
+            var idMedicine = childSnapshot2.val().IdMedicine;
+            var expire = childSnapshot2.val().ExpireDate;
+            var quantity = childSnapshot2.val().Quantity;
+            var price = childSnapshot2.val().Price;
+
+            // Tạo một phần tử input mới
+            var inputValue = document.getElementById(idMedicine+expire).value;
+           
+            if(inputValue === ''){
+                inputValue = 0
+            }
+            var intQuantity = parseInt(quantity)
+            var intValue = parseInt(inputValue)
+            var intPrice = parseInt(price)
+            
+            var Minus = intQuantity - intValue
+            var Mul = intValue * intPrice
+            // Bạn có thể sử dụng giá trị này cho mục đích của mình, ví dụ:
+            if(Minus <= 0){
+                Minus = 0
+                var Mul = intQuantity * intPrice
+            }
+
+            sum += Mul;
+
+           
+            var data = {
+                Quantity : Minus
+            }
+
+            database.ref('Medicine/' + Clinic + '/' + Place + '/' + idMedicine + '/' + expire).update(data)
+
+                })
+                
+           
+            })
+            
+            if(Options === "Yes"){
+                sum = 0.85 * sum
+                document.getElementById('Result').value = sum
+                database.ref('Profit').once('value',function(snapshot){
+                    if(!snapshot.exists()){
+                        var data = {
+                            Cost : sum
+                        }
+
+                        database.ref('Revenue/' + Clinic + '/' + weekNumber + '/' + 'MedicineExpense').set(data)
+                        .then(
+                            console.log('success')
+                        )
+                        .catch((error) => {
+                            console.error('Error', error)
+                        })
+
+                    } else {
+                        database.ref('Revenue/' + Clinic + '/' + weekNumber).once('value',function(snapshot){
+                            profitData = snapshot.val().Profit
+                            total = profitData + sum
+                            console.log(total)
+                            var data = {
+                                Cost : total
+                            }
+                            database.ref('Revenue/' + Clinic + '/' + weekNumber + '/' + 'MedicineExpense' ).set(data)
+                            .then(
+                            console.log('success')
+                            )
+                            .catch((error) => {
+                            console.error('Error', error)
+                            })
+                        
+                        })
+                    }
+                })
+            } else {
+                document.getElementById('Result').value = sum
+                database.ref('Revenue').once('value',function(snapshot){
+                    if(!snapshot.exists()){
+                        var data = {
+                            Cost : sum
+                        }
+
+                        database.ref('Revenue/' + Clinic + '/' + weekNumber + '/' + 'MedicineExpense' ).set(data)
+                        .then(
+                            console.log('success')
+                        )
+                        .catch((error) => {
+                            console.error('Error', error)
+                        })
+
+                    } else {
+                        database.ref('Revenue/' + Clinic + '/' + weekNumber + '/' + 'MedicineExpense' ).once('value',function(snapshot){
+                            profitData = snapshot.val().Cost
+                            total = profitData + sum
+                            console.log(total)
+                            var data = {
+                                Cost : total
+                            }
+                            database.ref('Revenue/' + Clinic + '/' + weekNumber + '/' + 'MedicineExpense').set(data)
+                            .then(
+                            console.log('success')
+                            )
+                            .catch((error) => {
+                            console.error('Error', error)
+                            })
+                        
+                        })
+                    }
+                })
+            }
+           
+        })
+     
+    }
+    function getWeekNumber(date) {
+
+        var startOfYear = new Date(date.getFullYear(), 0, 1);
+        var dayOfWeek = startOfYear.getDay();
+
+
+        var firstWeekStartDate = startOfYear;
+        if (dayOfWeek > 0) {
+            firstWeekStartDate.setDate(1 + (7 - dayOfWeek));
+        }
+
+        var differenceInDays = Math.floor((date - firstWeekStartDate) / (24 * 60 * 60 * 1000));
+
+        var weekNumber = Math.ceil((differenceInDays + 1) / 7) + 1;
+
+        return weekNumber;
+}
+    function BillSubmit(){
+        idBill = document.getElementById("IdBill").value
+        console.log(idBill)
+        Price = document.getElementById("Price").value
+        Clinic = document.getElementById("CLINIC3").value
+        detailBill = document.getElementById("detailBill").value
+        PhoneNumber = document.getElementById("PhoneBill").value
+        Dates = document.getElementById("Date").value
+                var data = {
+                    IdBill : idBill,
+                    Price : Price,
+                    DetailBill : detailBill,
+                    Clinic : Clinic,
+                    PhoneNumber : PhoneNumber,
+                    Date: Dates,
+                    Status : "No"
+                }
+                
+                firebase.database().ref('Bill/' + Clinic + '/' + PhoneNumber + '/' + idBill ).set(data)
+                console.log('submitBill')
+            
+            
+        }
+    
+    
+
+
+
+
+
+
+
+    function searchPatient(){
+    searchInput = document.getElementById('searchInput').value;
+    patientListRef = database.ref('patientList');
+    Clinic = document.getElementById("CLINIC2").value
+    
+    console.log(searchInput)
+    console.log(Clinic)
+
+    database.ref('patientList/' + Clinic).orderByChild('PhoneNumber').equalTo(searchInput).once('value')
+      .then((snapshot) => {
+       
+        const patients = snapshot.val();
+        if (patients) {
+            //xóa thông tin của bệnh nhân trước đó 
+            const patientInfoDiv = document.getElementById('patientInfo');
+            patientInfoDiv.innerHTML = ''; // Xóa nội dung của phần tử
+
+            //tìm kiếm từng bệnh nhân
+            snapshot.forEach((childSnapshot) => {
+                const patient = childSnapshot.val(); 
+                const patientInfoDiv = document.getElementById('patientInfo');
+                const patientDiv = document.createElement('div');
+                patientDiv.innerHTML = `<p>FullName: ${patient.FullName}</p>
+                                        <p>PhoneNumber: ${patient.PhoneNumber}</p>
+                                        <p>Clinic: ${patient.Clinic}</p>
+                                        <p>MedicalHistory: ${patient.MedicalHistory}</p>
+                                        <p>Status: ${patient.Status}</p>
+                                        <p>Status: ${patient.TestResult}</p>
+                                        <p>Location: ${patient.Location}</p>
+                                        <p>Time: ${patient.Time}</p>
+                                        <p>DateMeet: ${patient.Date}</p>
+                                        <p>HealthInsuranceNumber: ${patient.HealthInsuranceNumber}</p>`;
+                                        
+                patientInfoDiv.appendChild(patientDiv);
+                
+                //thêm vào chỗ này 
+                const buttonContainer = document.createElement('div');
+                buttonContainer.id = 'buttonContainer';
+
+                const editButton = document.createElement('button');
+                editButton.textContent = 'Edit';
+                editButton.addEventListener('click',()=>{
+                    editPatientInfo( patient.FullName, patient.PhoneNumber, patient.Clinic, patient.MedicalHistory,
+                    patient.Status, patient.TestResult, patient.Location, patient.Time, patient.Date, patient.HealthInsuranceNumber ) 
+                }
+                
+                )
+                //patientInfoDiv.appendChild(editButton);
+                buttonContainer.appendChild(editButton);
+
+                const deleteButton = document.createElement('button')
+                deleteButton.textContent ='Delete Patient';
+                deleteButton.addEventListener('click', () => {
+                    deletePatient(patient.PhoneNumber, patient.Clinic, patientDiv, editButton, deleteButton)
+                })
+                //patientInfoDiv.appendChild(deleteButton)
+                buttonContainer.appendChild(deleteButton);
+
+                const hideButton = document.createElement('button')
+                hideButton.textContent = 'Hide Patient'
+                hideButton.addEventListener('click', () =>{
+
+                    patientInfoDiv.innerHTML = ''
+                    document.getElementById('searchInput').value = ''
+                    document.getElementById('CLINIC2').value = ''
+
+                })
+                //patientInfoDiv.appendChild(hideButton)
+                buttonContainer.appendChild(hideButton)
+                //thêm vào chỗ này 
+                patientInfoDiv.appendChild(buttonContainer);
+            });
+          
+       
+          console.log("Bệnh nhân được tìm thấy:");
+         
+          console.log(patients);
+        } 
+        else {
+          console.log("Không tìm thấy bệnh nhân có tên là");
+        }
+      })
+      .catch((error) => {
+        console.error("Lỗi khi tìm kiếm bệnh nhân:", error);
+      });
+  
+};
+function HidePatient(){
+
+}
+function addPatient(){
+    FullName = document.getElementById('PATIENT_NAME').value
+    PhoneNumber = document.getElementById('PHONE_NUMBER').value
+    Clinic = document.getElementById("CLINIC").value
+    Status = document.getElementById("DETAILS").value
+    DateMeet = document.getElementById("RE-EXAMINATION").value
+    locationToMeet = document.getElementById("LOCATION").value
+    MedicalHistory = document.getElementById("HISTORY").value
+    Result = document.getElementById("RESULT").value
+    TimeClock = document.getElementById('TIME').value
+    HIs = document.getElementById('HealthInsuranceNumber').value
+
+    const patientRef = firebase.database().ref('patientList')
+    patientRef.once('value', (snapshot) => {
+        if (!snapshot.exists()) {
+            var data = {
+                    FullName : FullName,
+                    PhoneNumber : PhoneNumber,
+                    Clinic : Clinic,
+                    Status : Status,
+                    Date : DateMeet,
+                    Location : locationToMeet,
+                    MedicalHistory : MedicalHistory,
+                    TestResult : Result,
+                    Time : TimeClock,
+                    HealthInsuranceNumber : HIs,
+
+    }
+        console.log('No patientList found. Creating new patientList...');
+        firebase.database().ref('patientList/' + Clinic + '/' + PhoneNumber).set(data); // Tạo mới patientList nếu không tồn tại
+    }
+        snapshot.forEach((clinicSnapshot) =>{
+            clinicSnapshot.forEach((childSnapshot) => {
+                if(locationToMeet === childSnapshot.val().Location && DateMeet === childSnapshot.val().Date && TimeClock === childSnapshot.val().Time ){
+                    console.log('Room isnt ready')
+                    return
+                }
+                else{
+                    var data = {
+                    FullName : FullName,
+                    PhoneNumber : PhoneNumber,
+                    Clinic : Clinic,
+                    Status : Status,
+                    Date : DateMeet,
+                    Location : locationToMeet,
+                    MedicalHistory : MedicalHistory,
+                    TestResult : Result,
+                    Time : TimeClock,
+                    HealthInsuranceNumber : HIs,
+
+    }
+    console.log(Clinic)
+    console.log(PhoneNumber)
+    firebase.database().ref('patientList/' + Clinic + '/' + PhoneNumber).set(data)
+    .then(()=>{
+        console.log('Add Patient Successfully')
+    }
+    )
+                }
+
+            })
+        })
+    })
+
+
+}    
+function editPatientInfo( name,phone, Clinic, MedicalHistory, Status, TestResult, Location, Time, Date, HIs){
+    const newName = prompt("Enter Name", name)
+    const newSDT = prompt("Enter Phone Number", phone)
+    const newClinic = prompt("Enter New Clinic", Clinic)
+    const newMedicalHistory = prompt("Enter New History", MedicalHistory)
+    const newStatus = prompt("Enter New Status", Status)
+    const newTestResult = prompt("Enter New Test Result", TestResult)
+    const newLocation = prompt("Enter New Location", Location )
+    const newTime = prompt("Enter New Location", Time )
+    const newDate = prompt("Enter New Date", Date)
+    const newHIs = prompt("Enter New HI", HIs)
+
+    const patientRef = firebase.database().ref('patientList')
+    patientRef.once('value', (snapshot) => {
+        if (!snapshot.exists()) {
+            var data = {
+                FullName: newName,
+                PhoneNumber: newSDT,
+                Clinic: newClinic,
+                MedicalHistory: newMedicalHistory,
+                Status: newStatus,
+                TestResult: newTestResult,
+                Location: newLocation,
+                Time: newTime,
+                Date: newDate,
+                HealthInsuranceNumber : newHIs,
+
+    }
+ 
+        firebase.database().ref('patientList/' + newClinic + '/' + newSDT).update(data); // Tạo mới patientList nếu không tồn tại
+    }
+        snapshot.forEach((clinicSnapshot) =>{
+            clinicSnapshot.forEach((childSnapshot) => {
+                if(newLocation === childSnapshot.val().Location && newDate === childSnapshot.val().Date && newTime === childSnapshot.val().Time ){
+                    console.log('Room isnt ready')
+                    return
+                }
+                else{
+                    var data = {
+                    FullName: newName,
+                    PhoneNumber: newSDT,
+                    Clinic: newClinic,
+                    MedicalHistory: newMedicalHistory,
+                    Status: newStatus,
+                    TestResult: newTestResult,
+                    Location: newLocation,
+                    Time: newTime,
+                    Date: newDate,
+                    HealthInsuranceNumber : newHIs,
+
+    }
+
+    firebase.database().ref('patientList/' + newClinic + '/' + newSDT).update(data)
+    .then(()=>{
+        console.log('Edit Patient Successfully')
+        searchPatient()
+    }
+    )
+                }
+
+            })
+        })
+    })
+
+}
+
+function deletePatient(patientKey, Clinic, patinetDiv, editButton, deleteButton){
+    const confirmDelete = confirm('Are you sure to delete this patient?')
+    console.log(Clinic)
+    console.log(patientKey)
+    if(confirmDelete){
+        database.ref('patientList/' + Clinic + '/' + patientKey).remove()
+        .then(() => {
+            console.log('Bệnh nhân đã được xóa khỏi cơ sở dữ liệu.');
+            patinetDiv.remove()
+            editButton.style.display = 'none';
+            deleteButton.style.display = 'none';
+            document.getElementById('searchInput').value = '';
+            document.getElementById("CLINIC2").value = '';
+        })
+        .catch((error) => {
+            console.error('Lỗi khi xóa bệnh nhân:', error);
+        });
+    }
+}
+
+   </script>
+</html>
