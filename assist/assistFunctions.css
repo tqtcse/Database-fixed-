@@ -1,0 +1,1225 @@
+
+
+* {
+    padding : 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+#main {
+
+}
+
+#Header {
+    display: block;
+    position: relative;
+    height: 88px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 85px;
+    padding-right: 85px;
+    border-bottom-width: 0.8px;
+    line-height: 18px;
+    font-weight: 400;
+    font-size: 12px;
+    border-bottom: rgb(4, 7, 68) solid 10px;
+}
+
+/* .Header-line {
+    background-color: #08399c;
+    width: 100%;
+    height: 10px;
+} */
+.row {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.col-lg-2.col-6 {
+    display: block;
+    box-sizing: border-box;
+    flex-basis: 16.6667%;
+    max-width: 16.6667%;
+    height: 100%;
+    position: relative;
+    text-align: left;
+}
+
+.Logo {
+    box-sizing: border-box;
+    color: rgb(85, 85, 85);
+    display: block;
+    font-family: "Noto Sans JP", Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    height: 50px;
+    line-height: 18px;
+    text-align: left;
+    text-size-adjust: 100%;
+    width: 160px;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.Logo h1 {
+    box-sizing: border-box;
+    color: rgb(4, 7, 68);
+    display: block;
+    font-family: "Noto Sans JP", Helvetica, sans-serif;
+    font-size: 40px;
+    font-weight: 500;
+    height: 50px;
+    line-height: 40px;
+    margin-block-end: 0px;
+    margin-block-start: 0px;
+    margin-bottom: 0px;
+    margin-inline-end: 0px;
+    margin-inline-start: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+    padding-top: 20px;
+    text-align: left;
+    text-size-adjust: 100%;
+    width: 160px;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.Logo h1 a {
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url(https://www.booknmeet.com/img/bnm/BOOKNMEET.svg);
+    background-origin: padding-box;
+    background-position-x: 0%;
+    background-position-y: 0%;
+    background-repeat: no-repeat;
+    background-size: 165px 30px;
+    box-sizing: border-box;
+    color: rgb(0, 184, 255);
+    cursor: pointer;
+    display: block;
+    font-family: "Noto Sans JP", Helvetica, sans-serif;
+    font-size: 40px;
+    font-weight: 500;
+    height: 30px;
+    line-height: 40px;
+    outline-color: rgb(0, 184, 255);
+    outline-style: none;
+    outline-width: 0px;
+    text-align: left;
+    text-decoration-color: rgb(0, 184, 255);
+    text-decoration-line: none;
+    text-decoration-style: solid;
+    text-decoration-thickness: auto;
+    text-indent: -9999px;
+    text-size-adjust: 100%;
+    transition-behavior: normal;
+    transition-delay: 0s;
+    transition-duration: 0.5s;
+    transition-property: all;
+    transition-timing-function: ease-in-out;
+    width: 165px;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.col-lg-10.col-6 {
+    display: block;
+    box-sizing: border-box;
+    flex-basis: 83.3333%;
+    max-width: 83.3333%;
+    height: 100%;
+    position: relative;
+    text-align: left;
+}
+
+.main-menu {
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin-top: -20px;
+}
+
+.nav {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: end;
+}
+
+.nav li {
+    display: inline-block;
+    height: 100%;
+    padding: 10px;
+}
+
+.nav li a {
+    display: block;
+    color: rgb(32, 32, 121);
+    text-decoration: none;
+    line-height: 68px;
+    height: 100%;
+    font-weight: 500;
+    font-size: 18px;
+    
+}
+
+.nav li a small {
+    display: block;
+    color: rgb(8, 57, 156);
+    margin-top: -45px;
+    line-height: 65px;
+    font-size: 14px;
+}
+
+.nav li:hover a {
+    color: #00b8ff; 
+}
+
+.nav li a i {
+    font-size: 30px;
+   
+}
+
+.SearchBox {
+    height: 500px;
+    width: 100%;
+    display: table;
+}
+
+.SearchBox.version1 {
+    
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: rgb(4, 7, 68);
+    background-image: url(https://www.booknmeet.com/img/hero_home_bg_1.svg);
+    background-origin: padding-box;
+    background-position-x: 100%;
+    background-position-y: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-sizing: border-box;
+    color: rgb(85, 85, 85);
+    display: block;
+    font-family: "Noto Sans JP", Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    height: 500px;
+    line-height: 18px;
+    text-align: left;
+    text-size-adjust: 100%;
+    width: 100%     ;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.SearchBox .content {
+    padding-top: 121px;
+    vertical-align: middle;
+    text-align: center;
+}
+.SearchBox div h3 {
+    color: white;
+    font-size: 30px;
+    font-weight: 300;
+}
+
+.SearchBox div p {
+    color: white;
+    font-size: 15px;
+    font-weight: 300;
+    letter-spacing: 1.5px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    line-height: 24px;
+    text-shadow: rgba(0, 0, 0, 0.25);
+}
+
+.Searchbox_input {
+    display: block;
+    width: 100%;
+}
+
+.Searchbox_input .container {
+    display: flex;
+    justify-content: center;
+    max-width: 1140px;
+    margin: auto;
+}
+
+.col-lg-4 {
+    color: #08399c;
+    display: block;
+    box-sizing: border-box;
+    flex-basis: 33.3333%;
+    max-width: 33.3333%;
+    height: 100%;
+    position: relative;
+    text-align: left;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.col-lg-4 select {
+    color: #08399c;
+    display: inline-block;
+    width: 100%;
+    font-size: 16px;
+    border-radius: 5px;
+    padding-left: 20px;
+    height: 50px;
+    font-weight: 500;
+    border-style: none;
+}
+
+.col-lg-4 input {
+    font-size: 16px;
+    height: 50px;
+    border-style: none;
+}
+
+.search-query.ui-autocomplete-input {
+    color: #08399c;
+    padding-left: 20px;
+    border-style: none;
+    outline: none;
+    width: calc(100% - 94px);
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.search-query.ui-autocomplete-input::placeholder {
+    color: #08399c;
+}
+
+.button_submit {
+    width: 94px;
+    color: antiquewhite;
+    background-color: #00b8ff; 
+    margin-left: -5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.Main_content {
+    padding-top: 60px;
+    padding-bottom: 35px;
+    padding-left: 15px;
+    padding-right: 15px;
+    max-width: 1140px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.Main_content.Main_content2 {
+    margin-top: 40px;
+}
+
+.main_title {
+    margin-bottom: 45px;
+}
+
+.main_title h1 {
+    color: #040744;
+    font-weight: 400;
+    font-size: 22px;
+}
+
+.main_title p {
+    font-weight: 300;
+    font-size: 15px;
+    color: #777;
+    padding: 6px 10%;
+    letter-spacing: 0.8px;
+}
+
+.box_feat#icon_1 {
+    background: url(https://www.booknmeet.com/img/BNM-INDIA-L-H1.svg) center 45px no-repeat #fff;
+    padding-bottom: 60px;
+}
+
+.box_feat {
+    background-color: #fff;
+    padding: 165px 45px 20px;
+    text-align: center;
+    position: relative;
+    border-radius: 5px;
+    box-shadow: 0 0 30px 0 rgba(0,0,0,.1);
+}
+
+.box_feat#icon_2 {
+    background: url(https://www.booknmeet.com/img/BNM-INDIA-L-H2.svg) center 45px no-repeat #fff;
+    padding-bottom: 40px;
+}
+
+.box_feat#icon_3 {
+    background: url(https://www.booknmeet.com/img/BNM-INDIA-L-H3.svg) center 45px no-repeat #fff;
+}
+
+.box_feat#icon_4 {
+    background: url(https://www.booknmeet.com/img/bnm/SIMPLYFY-BOOKNMEET-01.svg) center 45px no-repeat #fff;
+}
+
+.box_feat#icon_5 {
+    background: url(https://www.booknmeet.com/img/bnm/POWERFUl-BOOKNMEET-01.svg) center 45px 
+    no-repeat #fff;
+}
+
+.box_feat#icon_6 {
+    background: url(https://www.booknmeet.com/img/bnm/BOOKNMEET-QMM-01.svg) center 45px no-repeat #fff;
+}
+
+.box_feat h3 {
+    padding-top: 20px;
+    padding-bottom: 10px;
+    color: #00b8ff;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.box_feat p {
+
+    text-align: justify;
+    letter-spacing: 0.8px;
+    color: rgb(85, 85, 85);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 19.2px;
+}
+
+.Footer {
+
+}
+.row.add_top_60.justify-content-around.text-right{
+    margin-top: 60px;
+    margin-bottom: 0px;
+    margin-left: -15px;
+    margin-right: -15px;
+    justify-content: space-around;
+}
+#app_section{
+    background-image: url(https://www.booknmeet.com/img/hero_bg_1.svg);
+    background-repeat: repeat ;
+    background-color :  #040744;
+    background-position-x: 0;
+    background-position-y: 0;
+    background-size: auto;
+    background-origin: padding-box;
+    box-sizing: border-box;
+    font-size: 12px;
+    font-weight: 400;
+    display: block;
+    line-height: 18px;
+    padding-bottom: 60px;
+    padding-top: 90px;
+    text-align: left;
+    text-size-adjust: 100%;
+    background-attachment: fixed;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    color: #fff
+}
+.img-fluid-home{
+    width: 400px;
+    height: 200px;
+}
+.btn.btn-sm.btn-primary{
+    background-color: #00b8ff;
+    padding: 5px;
+    border: 0.8px solid #00b8ff;
+    box-sizing: border-box;
+    color: #fff;
+    border-radius: 3.2px;
+    text-decoration: none;
+}
+.btn.btn-sm.btn-primary:hover{
+    background-color: #fff;
+    color: #00b8ff;
+}
+#homepagesection.col-md-6 .lead{
+    text-align:justify;
+}
+ #homepagesection.col-md-6{
+    padding: 0px 15px ;
+    box-sizing: border-box;
+    color: #fff;
+    display: block;
+    flex-basis: 50%;
+    position: relative;
+    text-align: left;
+    text-size-adjust: 100%;
+    width: auto;
+    max-width: 50%;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+.text-right #homepagesection.col-md-6{
+    text-align: right;
+}
+#app_section .container{
+    box-sizing: border-box;
+    display: block;
+    font-family:"Noto Sans JP",Helvetica,sans-serif;
+    font-weight: 400;
+    margin-left: auto ;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.col-md-5{
+    padding: 0px 15px;
+}
+#homepagesection.col-md-6 h3{
+    margin-bottom: 8px;
+}
+#app_section small {
+    font-weight: 600;
+    font-size: 13px;
+    font-size: .8125rem;
+    opacity: .6
+}
+#app_section h3 {
+    color: #fff;
+    font-size: 32px;
+    font-weight: 100;
+    font-size: 1.1rem
+}
+#app_section h3 strong {
+    color: #00deb9
+}
+#app_section p {
+    margin-bottom: 60px
+}
+p.lead {
+    font-weight: 100;
+    font-size: 20px;
+    font-size: .83rem
+}
+
+
+footer .container.margin_60_35{
+    box-sizing: border-box;
+    display: block;
+    font-family: "Noto Sans JP", Helvetica, sans-serif;
+    color: rgb(85, 85, 85);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 60px 15px 35px;
+    text-align: left;
+    text-size-adjust: 100%;
+    -webkit-font-smoothing : antialiased;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.col-lg-4.col-md-12 p{
+    margin-bottom: 15px;
+    text-align: justify;
+}
+.margin_60_35 h5 {
+    margin-bottom: 15px;
+    color: rgb(153, 153, 153);
+    font-size: 13px;
+    line-height:15.936px;
+}
+.follow_us ul{
+    display: flex;
+    list-style-type: none;
+}
+.fa{
+    margin-right: 10px;
+    font-feature-settings: normal;
+    font-size: 16px;
+    color: #00b8ff;
+}
+.fab{
+    margin-right: 10px;
+    font-feature-settings: normal;
+    font-size: 16px;
+    color: #00b8ff;
+}
+.contacts a{
+    color: rgb(85, 85, 85);
+    text-decoration: none;
+    text-decoration-line: none;
+    text-decoration-style: solid;
+    text-decoration-thickness: auto;
+    outline-style: none;
+    transition-duration: 0.3s;
+}
+.contacts a:hover{
+    color: #00b8ff;
+}
+.contacts{
+    list-style-type: none;
+    text-decoration: none;
+    margin-bottom: 35px;
+}
+.links{
+    list-style-type: none;
+    margin-bottom: 35px;
+}
+.links a{
+    color: rgb(85, 85, 85);
+    text-decoration: none;
+    text-decoration-line: none;
+    text-decoration-style: solid;
+    text-decoration-thickness: auto;
+    outline-style: none;
+    transition-duration: 0.3s;
+}
+.links li{
+    margin-bottom: 10px;
+}
+.links a:hover{
+    color: #00b8ff;
+}
+.links a:hover::after{
+    content: "\f105";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 12px;
+    margin-left: 5px;
+    transition-duration: 0.5s;
+}
+.col-lg-3.col-md-4 p{
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+.col-lg-4.col-md-12{
+    display: block;
+    box-sizing: border-box;
+    flex-basis: 33.3333%;
+    max-width: 33.3333%;
+    height: 100%;
+    position: relative;
+    text-align: left;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.col-lg-3.col-md-4{
+    display: block;
+    box-sizing: border-box;
+    flex-basis: 25%;
+    max-width: 25%;
+    height: 100%;
+    position: relative;
+    text-align: left;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.col-lg-5.col-md-5{
+    max-width: 41.6667%;
+    flex-basis: 41.6667%;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 13px;
+}
+.col-lg-5.col-md-5 h5{
+    margin-bottom: 15px;
+    color: rgb(153, 153, 153);
+    font-size: 13px;
+    line-height: 15.936px;
+}
+#email_id{
+    color: #00b8ff;
+    padding: 6px 12px;
+    border-radius: 5px;
+    background-color: #fff;
+    border: 1px solid #00b8ff; 
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+.btn_1{
+    background-color: #00b8ff;
+    padding: 7px 20px;
+    border-radius: 5px;
+    color: #fff;
+    border: 1px solid #00b8ff;
+    font-size: 14px;
+    text-decoration: none;
+}
+.btn_1:hover{
+    background-color: #3673b5;
+    color: #00b8ff;
+    transition-duration: 0.3s;
+}
+.col-lg-5.col-md-5 .btn.btn-sm.btn-primary{
+    background-color: #00b8ff;
+    padding: 5px;
+    border: 0.8px solid #00b8ff;
+    box-sizing: border-box;
+    color: #fff;
+    border-radius: 3.2px;
+    text-decoration: none;
+    text-align: center;
+    display: inline-block;
+}
+.col-lg-5.col-md-5 .btn.btn-sm.btn-primary:hover{
+    background-color: #3673b5;
+    color: #00b8ff;
+    transition-duration: 0.3s;
+}
+.col-lg-5.col-md-5 .btn.btn-sm.btn-primary i{
+    margin-right: 5px;
+}
+.col-lg-5.col-md-5 p{
+    margin-bottom: 15px;
+    text-align: justify;
+}
+.row .col-md-12 p {
+    margin-bottom: 15px;
+    text-align: justify;
+}
+.row{
+    margin: 0px 15px;
+}
+.col-md-12{
+    padding: 0px 15px ;
+}
+.additional_links ul{
+    display: flex;
+    list-style-type: none;
+}
+.row .col-md-8{
+    padding: 0px 15px;
+    flex-basis: 66.6667%;
+    max-width: 66.6667%;
+}
+.row .col-md-8 #additional_links{
+    display: flex;
+    margin-top: 15px;
+    list-style-type: none;
+}
+#additional_links li{
+    margin-right: 10px;
+    text-decoration-line: none;
+}
+#additional_links li a{
+    color: black;
+    text-decoration: none;
+    text-decoration-line: none;
+    text-decoration-style: solid;
+    text-decoration-thickness: auto;
+    outline-style: none;
+    transition-duration: 0.3s;
+}
+#additional_links li a:hover{
+    color: #3673b5;
+    transition-duration: 0.7s;
+}
+#additional_links li a::after{
+ /* gạch dọc  */
+    content: "|";
+    margin-left: 10px;
+    margin-right: 10px;
+    color: black;
+}
+/* không có phần tử giả */
+#additional_links li:last-child a::after{
+    content: "";
+}
+.row .col-md-4{
+    padding: 0px 15px;
+    flex-basis: 33.3333%;
+    max-width: 33.3333%;
+}
+.row .col-md-4 #copy a{
+    text-decoration-line: none;
+
+}
+.row .col-md-4 #copy a:hover{
+    color: #3673b5;
+    transition-duration: 0.7s;
+}
+
+
+/* Login - register */
+/* modal */
+.modal
+{
+    display: flex;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    animation: fadein linear 0.1s;
+}
+.modal__overlay
+{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url(https://t3.ftcdn.net/jpg/02/16/49/46/360_F_216494639_uZ0e27KMsl5qyKFXiZDTGUPO7bcMxCeh.jpg);
+}
+
+.modal__body
+{
+    --growth-from: 0.6;
+    --growth-to: 1;
+    position: relative;
+    width: 500px;
+    height: 400px;
+    background-color: #fff;
+    margin: auto;
+    border-radius: 4px;
+    animation: Growth linear 0.15s;
+    padding-top: 20px;
+
+}
+
+
+.auth-form__container
+{
+    padding: 0 32px;
+    padding-bottom: 24px;
+    background-color: white;
+}
+.auth-form__header
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.auth-form__heading
+{
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-color);
+    
+}
+.auth-form__switch-btn
+{
+    font-size: 18px;
+    font-weight: 700;
+    color: #08399c;
+    cursor: pointer;
+}
+.auth-form__form
+{
+    width: 100%;
+}
+.auth-form__input
+{
+    height: 36px;
+    width: 100%;
+    margin-top: 16px;
+    padding: 0 12px;
+    font-size: 16px;
+    border: 1px solid rgb(162, 159, 159); 
+    border-radius: 10px;
+    outline: none;
+}
+.auth-form__input:focus
+{
+    border-color: #888;
+}
+.auth-form__aside
+{
+    margin-top: 16px;
+}
+.auth-form__policy-text
+{
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+    padding:  0 12px;
+}
+.auth-form__text-link
+{
+    font-weight: 600;
+    text-decoration: none;
+    color: #08399c;
+}
+.auth-form__controls
+{
+    display: flex;
+    justify-content: end;
+    margin-top: 80px;
+}
+.auth-form__controls-back
+{
+    border-radius: 4px;
+    margin-right: 8px;
+    padding: 10px 28px;
+    border-style: none;
+    cursor: pointer;
+}
+.btn.btn__primary {
+    padding: 10px 28px;
+    background-color: #08399c;
+    color: white;
+    border-style: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.auth-form__socials
+{
+    display: flex;
+    justify-content: space-between;
+    background-color: #f5f5f5;
+    padding: 12px 36px;
+    margin-bottom: 0;
+}
+.btn.btn--with-icon
+{
+    height: 34px;
+    min-width: 208px;
+    border-radius: 3px;
+}
+
+.btn.btn--with-icon {
+    text-decoration: none;
+    cursor: pointer;
+}
+.btn.btn--with-icon--facebook:hover
+{
+    background-color: #3a5a98;
+}
+.btn.btn--with-icon--google:hover
+{
+    background-color: white;
+} 
+.btn--with-icon--facebook
+{
+    background-color: #3a5a98;
+    color: white;
+}
+.btn--with-icon
+{
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.fa-brands
+{
+    margin-right: 30px;
+}
+.btn--with-icon--google
+{
+    color: #555;
+    background-color: white;
+}
+/* Login form */
+.auth-form__help
+{
+    display: flex;
+    justify-content: end;
+    
+}
+.auth-form__help-link
+{
+    color: #939393;
+    text-decoration: none;
+    font-size: 13px;
+}
+.auth-form__help-link.auth-form__help-link--forget
+{
+    color: #08399c;
+    padding-right: 10px;
+    margin-right: 10px;
+    border-right: #d9d7d7 solid 1px;
+}
+
+/* Animation */
+@keyframes fadein
+ {
+    from
+    {
+        opacity:0
+    }
+    to 
+    {
+        opacity:1;
+    }
+ }
+ @keyframes Growth
+{
+    from
+    {
+        opacity: 0;
+        transform: scale(var(--growth-from));
+    }
+    to
+    {
+        opacity: 1;
+        transform: scale(var(--growth-to));
+    }
+}
+ /* ----------- */
+
+
+/* responsive */
+
+
+/* AppointmentWithPatient */
+#weekNumberDisplay  {
+    font-size: 20px !important;
+    padding: 20px 60px;
+    width: 100%;
+    text-align: end;
+    font-weight: 600;
+}
+
+.Appointment_List-title {
+    font-size: 20px;
+    display: inline-block;
+    margin: 50px 100px;
+    padding-bottom: 12px;
+    font-weight: 600;
+    border-bottom: rgb(4, 7, 68) solid 3px;
+}
+
+#appointmentTable thead th {
+    background-color: rgb(4, 7, 68);
+    color: white;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.fullname {
+    background-color: rgb(4, 7, 68);
+    color: white;
+    padding: 12px 100px !important;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.Content_AWP {
+    
+}
+
+#appointmentTable {
+    display: none;
+    margin: 40px 200px;
+}
+
+
+.AppointmentList_img {
+    background-image: url("https://www.booknmeet.com/img/bnm/booknmeet-india-thankyou-email-2018.png");
+    width: 700px;
+    height: 300px;
+    margin: 0 auto;
+    margin-bottom: 60px;
+}
+
+.main_title-AWP {
+    margin-top: 40px;
+}
+
+.main_title-AWP h1 {
+    color: #040744;
+    font-size: 20px !important;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-align: center;
+}
+
+.main_title-AWP p {
+    font-weight: 300;
+    font-size: .83rem;
+    color: #777;
+    padding: 0 10%;
+    text-align: center;
+    letter-spacing: .8px;
+}
+
+.AppointmentListContainer {
+    display: flex;
+    background-color: #fff ;
+    margin: auto;
+    width: 80%;
+    height: auto;
+    border-radius: 20px;
+    margin-bottom: 60px;
+}
+
+
+.appointment {
+    background-color: #040744;
+    height: 100%;
+    width: 50%;
+    border-radius: 20px;
+    color: #fff;
+    padding: 20px 40px 40px;
+    font-size: 30px;
+}
+
+.appointment h3 {
+    font-size: 20px;
+    padding-bottom: 40px;
+    font-weight: 700;
+    line-height: 29px;
+    text-align: center;
+}
+
+.appointment button {
+    color: #fff;
+    font-size: 20px;
+    border-radius: 10px;
+    padding: 10px;
+    margin-left: 100px;
+    cursor: pointer;
+    background-color: #00b8ff;
+    border-style: none;
+    margin-top: 20px;
+}
+
+.appointment button:hover {
+    color: #fff;
+    background-color: #2687cd;
+    border-color: #74d1c6;
+}
+#delete_appointment {
+    height: 100%;
+    width: 50%;
+    font-size: 36px;
+    font-weight: 600;
+    color: #040744;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    
+}
+
+#delete_appointment input {
+    display: inline-block;
+    margin-left: auto;
+    width: auto;
+    font-size: 20px;
+    border-radius: 30px;
+    border-color: #140202;
+    padding: 10px 20px;
+    margin-top: 30px;
+}
+
+#delete_appointment button {
+    background-color: #040744;
+    border-radius: 30px;
+    color: #fff;
+    padding: 10px 30px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#delete_appointment button:hover {
+    background-color: #03408a;
+}
+
+.AppointmentList {
+
+}
+
+.Convert_box {
+    display: flex;
+    padding: 0 170px;
+}
+
+#dateConvert {
+    width: auto;
+    font-size: 20px;
+    border-radius: 30px;
+    padding: 10px 20px;
+    border-color: #140202;
+}
+
+#convert button{
+    background-color: #040744;
+    border-radius: 30px;
+    color: #fff;
+    padding: 10px 30px;
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+#convert button:hover {
+    background-color: #03408a;
+}
+
+.clinic-select {
+    font-size: 20px;
+    padding: 10px 30px;
+    margin-left: 170px;
+    margin-top: 20px;
+    border-color: #140202;
+    cursor: pointer;
+}
+
+.week-select {
+    font-size: 20px;
+    padding: 10px 30px;
+    margin-left: 70px;
+    margin-top: 20px;
+    border-color: #140202;
+    cursor: pointer;
+}
+
+.date-select {
+    font-size: 20px;
+    padding: 10px 30px;
+    margin-left: 70px;
+    margin-top: 20px;
+    border-color: #140202;
+    cursor: pointer;
+}
+
+#displayConver {
+    font-size: 20px;
+    margin-left: 180px;
+    margin-top: 20px;
+}
+
+.AS_select-box {
+    display: flex;
+    margin-bottom: 60px;
+}
+
+#scheduleContainer {
+    display: block;
+    font-size: 24px;
+    margin-left: 170px;
+    margin-top: 30px;
+    margin-bottom: 60px;
+}
+
+#saveButtonContainer button{
+    background-color: #040744;
+    border-radius: 30px;
+    color: #fff;
+    padding: 10px 30px;
+    font-size: 20px;
+    cursor: pointer;
+    margin-top: 30px;
+    margin-left: 170px;
+    margin-bottom: 60px;
+}
+#saveButtonContainer button:hover {
+    background-color: #03408a;
+}
+
+#scheduleTable {
+    font-size: 30px;
+
+}
+
+#scheduleTable td {
+    font-size: 30px;
+    
+}
