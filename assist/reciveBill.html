@@ -1,34 +1,212 @@
 <!DOCTYPE html>
-<head>
-
+<html>
+    <head>
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./reciveBill.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./assets/img/">
 </head>
 
 <body>
+    <div id="Header">  
+        <div class="row">
+            <div class="col-lg-2 col-6">
+                <div class="Logo">
+                    <h1>
+                        <a title="BOOKNMEET India" alt="BOOKNMEET India" href="https://www.booknmeet.com/">BOOKNMEET</a>
+                    </h1>
+                </div>
+            </div>
+            <div class="col-lg-10 col-6">
+                <div class="main-menu">
+                    <ul class="nav">
+                        <li>
+                          <a href="assistFunctions.html">
+                              Home
+                              <small>Main<small>
+                          </a>                  
+                        </li>
+                        <li>
+                            <a href="calendar.html">
+                                My Appoinments
+                                <small>Let Us Collaborate<small>
+                            </a>
+                            
+                        </li>
+                        <li>
+                            <a href="assistDetail.html">
+                                My Information
+                                <small>Pandora Box</small>
+                            </a>
+                            
+                        </li>
+                        <li>
+                            <a href="reciveBill.html">
+                                Patient Bill List
+                                <small>List</small>
+                            </a>
+                            
+                        </li>
+                        <li>
+                            <a href="index1.html">
+                                <i class="fa-solid fa-user-minus"></i>
+                            </a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
     
-    <div><span id="weekNumberDisplay"></span></div>
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
-   <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
-   <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
-   <script src="../index1.js"></script>
-Find Patient Bill
-<div><input type="text" id="PhoneNumber" placeholder="Find By Phone"></div>
-<div><input type="text" id="FindBill" placeholder="Find Bill By ID"></div>
-<input type="text" id="CLINIC" list="CLINIC_LIST" placeholder="Choose Clinic">
-<datalist id="CLINIC_LIST">
-    <option value="Ophthalmology">
-    <option value="Otorhinolaryngology">
-    <option value="Dermatology">
-    </option>
-</datalist>
-<div><button onclick="findBill()">Find Bill</button></div>
-<div id="BillInformation"></div>
+        <div class="Header-line"></div>
+    </div>
+    <div class="Container_AWP">
+        <div class="Content_AWP">
+            <div id="weekNumberDisplay"></div>
+            <div class="main_title-AWP">
+                <h1>BOOKNMEET FEATURES</h1>
+                <p>Scheduling automation you and your invitees will actually enjoy. </p>
+                <div class="AppointmentList_img"></div>
+            </div>
 
-<div id="Edit"></div>
+            <div id="form" class="Appointment_List-title">FIND PATIENT BILL</div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+    <script src="../index1.js"></script>
+    <div class="revicveBill_box">
+        <div class="input_reciveBill">
+            <input type="text" id="PhoneNumber" placeholder="Find By Phone">
+            <input type="text" id="FindBill" placeholder="Find Bill By ID">
+            <input type="text" id="CLINIC" list="CLINIC_LIST" placeholder="Choose Clinic">
+            <datalist id="CLINIC_LIST">
+                <option value="Ophthalmology">
+                <option value="Otorhinolaryngology">
+                <option value="Dermatology">
+                </option>
+            </datalist>
+        </div>
+        <div><button onclick="findBill()" id="findBill_button">Find Bill</button></div>
+    </div>  
+    <div id="BillInformation"></div>
+
+    <div id="Edit"></div>
+    <footer>
+    <div class="container margin_60_35">
+<div class="row">
+  <div class="col-lg-4 col-md-12">
+      <p>
+          <a href="https://www.booknmeet.com/" title="BOOKNMEET ONLINE APPOINTMENT PLATFORM">
+              <img src="https://www.booknmeet.com/img/bnm/BOOKNMEET.svg" alt="BOOKNMEET INDIA'S BEST ONLINE APPOINTMENT SCHEDULING PLATFORM" width="165" height="30" class="img-fluid">
+          </a>
+      </p>
+      <h5>Online Appointment Scheduling Platform</h5>
+      <ul class="contacts">
+          <li><a href="https://g.page/booknmeet" target="_new"><i class="fa fa-map-marker"></i>Nasscom Startup Warehouse, Infopark Campus, Kakkanad, Kerala, India</a></li>
+          <li><a href="tel://+91 9496 947 548"><i class="fa fa-mobile-phone"></i>+91 9496 947 548</a></li>
+          <li><a href="mailto:post@booknmeet.com"><i class="fa fa-envelope"></i>post@booknmeet.com</a></li>
+      </ul>
+      <div class="follow_us">
+          <h5>Follow us</h5>
+          <ul>
+              <li><a href="https://www.facebook.com/booknmeet" target="_new"><i class="fab fa-facebook"></i></a></li>
+              <li><a href="https://twitter.com/booknmeet" target="_new"><i class="fab fa-twitter"></i></a></li>
+              <li><a href="https://in.linkedin.com/in/booknmeet" target="_new"><i class="fab fa-linkedin"></i></a></li>
+              <li><a href="https://www.instagram.com/booknmeet/" target="_new"><i class="fab fa-instagram"></i></a></li>
+              <li><a href="https://api.whatsapp.com/send?phone=919496947548&amp;text=BOOKNMEET%20-%20Confirmed%20Online%20Appointment" target="_new"><i class="fab fa-whatsapp"></i></a></li>
+              <li><a href="https://youtube.com/@booknmeet" target="_new"><i class="fab fa-youtube" target="_new"></i></a></li>
+              <li><a href="https://play.google.com/store/apps/dev?id=4852298828600166862" target="_new"><i class="fab fa-android" target="_new"></i></a></li>
+          </ul>
+      </div><br>
+      <p>
+          <a href="https://play.google.com/store/apps/details?id=com.booknmeet.app" target="_new" title="BOOKNMEET mobile app now available on Google playstore">
+              <img src="https://www.booknmeet.com/img/bnm/google-play-badge-bnm-vc-01.svg" width="120" height="36" alt="BOOKNMEET mobile app now available on Google playstore" class="img-fluid">
+          </a>
+      </p>
+      
+  </div>
+  <div class="col-lg-3 col-md-4">
+  
+      <ul class="links">
+      <li><a href="/clinicalprocedures">Clinical Procedure Scheduling</a></li>
+      <li><a href="/vaccination">Vaccination</a></li>
+      <li><a href="/nutritionpractice">Nutrition Practice</a></li>
+      <li><a href="/compareplans">Compare Plans</a></li>
+          <li><a href="/terms">Terms of Use</a></li>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          <li><a href="/personalinformationpolicy">Personal Information Policy</a></li>
+          <li><a href="/videoconsultationpolicy">Video Consultation Policy</a></li>
+          <li><a href="/trademarknotice">Trade Mark Notice</a></li>
+          <li><a href="/faq">FAQ</a></li>
+          
+          <li><a href="/limitedoffer">Special Offer</a></li>
+      </ul>
+      <p>Subscribe to BOOKNMEET Newsletter to get Important News, Amazing Offers &amp; Inside Scoops:</p>
+        <form method="post" action="" class="rd-mailform subscribe" id="subscription_mail" data-parsley-validate="" novalidate="">
+            <input type="hidden" name="form-type" value="subscribe">
+            <input id="email_id" name="email_id" data-parsley-trigger="change" required="" type="email" class="form-control" placeholder="Email">
+            <br>
+            <input type="submit" class="btn_1" value="Submit"><div class="mfInfo"></div>												 
+        </form>
+  </div>
+      
+  <div class="col-lg-5 col-md-5" id="homepagesection">
+      <a class="btn btn-sm btn-primary" href="https://www.booknmeet.com/demo">Request BOOKNMEET Demo</a>
+      <a class="btn btn-sm btn-primary" href="https://www.booknmeet.com/career">Career@BOOKNMEET</a>
+      <a class="btn btn-sm btn-primary" href="https://www.booknmeet.com/webstories/bnm-amp-stories.html">WEBSTORIES</a>
+      <h5 style="margin-top: 20px;">Your guaranteed Mobile Online Appointment</h5>
+      <p>With BOOKNMEET productivity tool, be successful in avoiding unscheduled absences. let our tool support you to be a leader in your medical practice. The best online appointment scheduling Platform enhances your practice management with online profile visibility.</p>
+      
+  </div>
+  
+</div>
+<br><br>
+<!--/row-->
+<div class="row">
+  <div class="col-md-12">
+                    </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-md-12">
+  
+      <p>
+          <a target="_blank" href="http://www.newindianexpress.com/cities/kochi/2017/feb/08/book-n-meet-a-doctor-1568476.html"><img style="width:168px;height:21px;margin-right:25px;" alt="Booknmeet startup based in Kochi featured by National media,The New IndianExpress-Startupedia" class="img-fluid" src="https://www.booknmeet.com/img/theNewIndianExpress-booknmeet-2020.png"></a>
+          
+          <a target="_blank" href="http://epaperbeta.timesofindia.com/Article.aspx?eid=31811&amp;articlexml=Startups-wake-up-to-new-avenues-30072017002046"><img style="width: 165px;height:21px;margin-right:25px" alt="Booknmeet startup based in Kochi featured by National media,The Times of India-TOI-Startup feature by local correspondant" class="img-fluid" src="https://www.booknmeet.com/img/theTimesofIndia-booknmeet-2020.png"></a>
+          
+          <a target="_blank" href="https://www.vanitha.in/justin/book-in-meet-prashanthi-nadhan-article-vanitha.html"><img style="width: 127px;height:36px;" alt="Booknmeet startup based in Kochi featured by National media,Vanitha-Startup feature by local correspondant" class="img-fluid" src="https://www.booknmeet.com/img/Vanitha-Manorama-booknmeet-2020.png"></a>
+      
+      </p>
+  
+  </div>
+
+</div>
+<hr>
+<div class="row">
+  <div class="col-md-8">
+      <ul id="additional_links">
+          <li><a href="https://qstat.co" target="_new" title="BOOKNMEET QMS WITH TOKEN">QSTAT</a></li>
+          <li><a href=" http://startups.startupmission.in/c/460" class="text-transform-none" target="_blank" title="Kerala Startup Mission Certified Startup">KSUM</a></li>
+          <li><a href="https://www.startupindia.gov.in/content/sih/en/profile.Startup.59807990e4b0bed982a4ed5c.html" class="text-transform-none" target="_blank" title="Govt. of India Certified Startup">STARTUPINDIA</a></li>
+      </ul>
+  </div>
+  <div class="col-md-4">
+      <div id="copy">Copyright © 2024 All Rights Reserved by <a href="https://www.booknmeet.com/">BOOKNMEET®</a></div>
+  </div>
+</div>
+</div>
+    </footer>
 </body>
 <script>
 var currentDate = new Date();
 var weekNumber = getWeekNumber(currentDate);
-document.getElementById('weekNumberDisplay').innerText = "Tuần của thời gian hiện tại là tuần " + weekNumber;
+document.getElementById('weekNumberDisplay').innerText = "Current week: " + weekNumber;
 function getWeekNumber(date) {
 
     var startOfYear = new Date(date.getFullYear(), 0, 1);
